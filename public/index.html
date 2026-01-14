@@ -8,11 +8,11 @@
 <body>
     <h1>Prueba de Geolocalización</h1>
     <button id="getLocation">Obtener mi ubicación</button>
-    <p id="status"></p>
+    <p id="statusUbi"></p>
 
     <script>
         document.getElementById('getLocation').addEventListener('click', () => {
-            const status = document.getElementById('status');
+            const status = document.getElementById('statusUbi');
             status.textContent = 'Obteniendo ubicación...';
 
             if (!navigator.geolocation) {
