@@ -34,6 +34,12 @@
             cursor: pointer;
             border-radius: 15px;
         }
+    .barraInicio button:hover { /*Hace que cambie de color cuando se toca el button con el mouse*/
+        background-color: #0a8d71;
+        color: white;
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    }
 
     .barraImagen{
         background-image: url("bannerSports.jpg");
@@ -46,6 +52,38 @@
         color: rgb(248, 245, 245);
         font-weight: bold;
         text-shadow: 1px 1px 4px rgb(0, 0, 0);
+    }
+    .opcionesInicio {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+    }
+    .opcionesInicio button {
+        background-color: #ffffff;
+        color: #06745c;
+        border: none;
+        padding: 20px 30px;
+        font-size: 22px;
+        font-weight: bold;
+        border-radius: 15px;
+        cursor: pointer;
+        box-shadow:0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    }
+    .opcionesInicio button:hover { /*Hace que cambie de color cuando se toca el button con el mouse*/
+        background-color: #0a8d71;
+        color: white;
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    }
+    #AccionesAdm {/*Ocultar boton de acciones de admin, solo visible si ingresa un admin*/
+        display: none;/*Cambiar display en logica*/
+    }
+    #soporte {
+        position:fixed;
+        bottom:20px;
+        right:20px;
     }
 </style>
 <head>
@@ -70,6 +108,8 @@
     <div class="opcionesInicio">
         <button id="VerPolis">Ver polideportivos</button>
         <button id="VerReservas">Ver reservas</button>
+        <button id="AccionesAdm">Opciones administrativas</button>
+        <button id="soporte">Ayuda</button>
     </div>
 
 </body>
