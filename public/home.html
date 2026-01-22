@@ -104,13 +104,46 @@
     <div class="barraImagen">
         Bienvenidos a On-Sport
     </div>
-    </div>
     <div class="opcionesInicio">
         <button id="VerPolis">Ver polideportivos</button>
         <button id="VerReservas">Ver reservas</button>
         <button id="AccionesAdm">Opciones administrativas</button>
         <button id="soporte">Ayuda</button>
     </div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
 
+        if (!navigator.geolocation) {
+            console.warn('Geolocalización no soportada');
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const { latitude, longitude } = position.coords;
+
+                console.log('Ubicación obtenida:', latitude, longitude);
+
+                fetch('/location', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ latitude, longitude }),
+                })
+                .then(() => {
+                    console.log('Ubicación enviada al servidor');
+                })
+                .catch(error => {
+                    console.error('Error enviando ubicación:', error);
+                });
+            },
+            (error) => {
+                console.warn('Error de geolocalización:', error.code);
+            }
+        );
+    });
+</script>
+    </script>
 </body>
 </html>

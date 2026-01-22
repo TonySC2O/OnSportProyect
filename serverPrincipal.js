@@ -17,7 +17,7 @@ app.post('/location', (req, res) => {
 
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
+    res.sendFile(__dirname + '/public/home.html');
 });
 
 app.listen(port, () => {
