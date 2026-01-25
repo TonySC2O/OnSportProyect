@@ -1,0 +1,7 @@
+.fondoheader {
+    background-color: #004080; /* Color de fondo del header */
+    height: 100px; /* Altura del header */
+    width: 100px; /* Ancho del header */
+    padding: 20px; /* Espaciado interno */
+    text-align: center; /* Alineación del texto */
+}
