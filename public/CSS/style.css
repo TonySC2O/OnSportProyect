@@ -3,17 +3,26 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+body{
+    font-family: Arial, sans-serif;
+    background: #f1eadd;
+    color: #333;
+}
+.container{
+    width: 90%;
+    margin: 0 auto;
+    height: auto;
+}
+/*------------------------Header------------------------------------------------------*/
 .barraInicio {
     background: #06745C;
     background: linear-gradient(90deg, rgba(6, 116, 92, 1) 0%, rgba(66, 214, 113, 1) 100%);
-    height: 120px; /* Altura del header */
+    height: 125px; /* Altura del header */
     width: 100vw; /* Ancho del header */
     display: flex;
     flex-wrap: wrap;
-    justify-content:space-between;
+    justify-content: space-between;
     color:antiquewhite;
-    padding:10px 20px;
     align-items: center;
     font-size: 50px;
     font-weight: bold;
@@ -23,9 +32,181 @@
 .barraInicioIzquierda{
     display: flex;
     align-items: center;
+    margin-left: 2%;
 }
 .logo{
     height: 100px;
     width: auto;
     margin-bottom: auto;
+}
+.barraInicioDerecha{
+    display: flex;
+    margin-right: 2%;
+}
+    .barraInicio button {
+            background-color: #ffffff;
+            color: #06745c;
+            border: none;
+            padding: 10px 20px;
+            margin-left: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 15px;
+        }
+    .barraInicio button:hover { /*Hace que cambie de color cuando se toca el button con el mouse*/
+        background-color: #59da78;
+        color: rgb(0, 0, 0);
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    }
+    .Buscar{
+        margin: 0;
+        padding: 0;
+        display: flex;
+        width: 100%;
+        height: 75px;
+        background-color: rgb(197, 197, 197);
+    }
+    /*------------------------Main------------------------------------------------------*/
+    main{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 44px 0;
+    }
+    .deportes{
+        margin-top: 80px;
+        width: 100%;
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 2fr);
+        grid-template-rows: repeat(2, 2fr);
+        grid-template-areas: "layout1 layout2" 
+                             "layout3 layout4";
+        column-gap: 30px;
+        row-gap: 60px;
+    }
+    .imagen{
+        grid-area: arriba1;
+        width: 275px;
+        height: 100%;
+        overflow: hidden;
+        background-image: url(/public/basketball2.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    .layout1{
+        grid-area: layout1;
+        background-color: rgb(213, 250, 238);
+        border-radius: 61.14px;
+        overflow: hidden;
+        height: 300px;
+        grid-template-columns: repeat(2, 2fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-areas: "arriba1 arriba2" 
+                             "abajo3 abajo3";
+    }
+    .layout2{
+        grid-area: layout2;
+        background-color: rgb(213, 250, 238);
+        border-radius: 61.14px;
+        overflow: hidden;
+        height: 300px;
+        grid-template-columns: repeat(2, 2fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-areas: "arriba1 arriba2" 
+                             "abajo3 abajo3";
+    }
+    .layout3{
+        grid-area: layout3;
+        background-color: rgb(213, 250, 238);
+        border-radius: 61.14px;
+        overflow: hidden;
+        height: 300px;
+        grid-template-columns: repeat(2, 2fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-areas: "arriba1 arriba2" 
+                             "abajo3 abajo3";
+    }
+    .layout4{
+        grid-area: layout4;
+        background-color: rgb(213, 250, 238);
+        border-radius: 61.14px;
+        overflow: hidden;
+        height: 300px;
+        grid-template-columns: repeat(2, 2fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-areas: "arriba1 arriba2" 
+                             "abajo3 abajo3";
+    }
+    .layout-main{
+        display: flex;
+        flex-wrap: wrap;
+        height: 200px;
+    }
+    .layout-texto{
+        grid-area: arriba2;
+        padding-top: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+    .tags{
+        grid-area: abajo3;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    /*------------------------Footer------------------------------------------------------*/
+    footer{
+    width: 100%;
+    height: auto;
+    background: #343434;
+    margin: 0;
+    display: flex;
+    justify-content: space-evenly;
+    min-width: 80%;
+    flex-wrap: wrap;
+    padding: 0 80px;
+}
+.ficha-1{
+    width: 100%;
+    height: auto;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-bottom: #fff solid 1px;
+}
+.ficha-1 h2{
+    font-size: 24px;
+}
+.ficha-1 a{
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 0 0 0;
+    font-size: 28px;
+    margin: 10px;
+}
+.ficha-2{
+    width: 100%;
+    height: auto;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: #fff solid 1px;
+}
+.ficha-3{
+    width: 100%;
+    height: auto;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.ficha-3 h2{
+    font-size: 20px;
 }
