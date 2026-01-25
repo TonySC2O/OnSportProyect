@@ -34,6 +34,43 @@
     .box {
         margin-left: 35px;
     }
+    .barraLogInInfo {
+        background-color: #0d8869;
+        padding: 20px;
+        border-radius: 15px;
+        margin-top: 30px;
+
+        font-size: 25px;
+        color: rgb(245, 233, 210);
+        font-size: 30px;
+        font-weight: bold;
+        text-shadow: 1px 2px 8px rgb(0, 7, 3);
+    }
+    .barraLogInInfo input[type="text"], .barraLogInInfo input[type="password"] {
+        width: 30%;
+        height: 20px;
+        padding: 15px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 20px;
+    }
+    .barraLogInInfo button {
+        background-color: #ffffff;
+        color: #06745c;
+        border: none;
+        padding: 10px 20px;
+        margin-top: 20px;
+        font-size: 24px;
+        cursor: pointer;
+        border-radius: 15px;
+    }
+    .barraLogInInfo button:hover { /*Hace que cambie de color cuando se toca el button con el mouse*/
+        background-color: #0a8d71;
+        color: white;
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    }
 </style>
 <head>
     <meta charset="UTF-8">
@@ -48,6 +85,14 @@
         <img src="football.png" class="football" alt="football" height=210px>
         <img src="volleyball.png" class="volleyball" alt="volleyball" height=210px>
         <img src="box.png" class="box" alt="box" height=210px>
+    </div>
+    <div class="barraLogInInfo">
+        <h2>Ingrese sus datos para iniciar sesión</h2>
+        <label for="username">Nombre de usuario:</label><br>
+        <input type="text" id="username" name="username"><br><br>
+        <label for="password">Contraseña:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <button id="logInButton">Iniciar Sesión</button>
     </div>
 </body>
 </html>

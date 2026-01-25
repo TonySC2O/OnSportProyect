@@ -85,6 +85,42 @@
         bottom:20px;
         right:20px;
     }
+    .modalSupport {
+        display: none; 
+        position: fixed; 
+        z-index: 1000; 
+        left: 0;
+        top: 0;
+        width: 100%; 
+        height: 100%;
+        background-color: rgba(0,0,0,0.6); 
+    }
+    .modalSupportInfo {
+        background-color: #159281;
+        margin: 10% auto; 
+        padding: 25px;
+        width: 400px; 
+        border-radius: 15px;
+        text-align: center;
+        color: white;
+        font-size: 25px;
+    }
+    .modalSupportInfo button {
+        background-color: #ffffff;
+        color: #06745c;
+        border: none;
+        padding: 10px 20px;
+        margin-top: 20px;
+        font-size: 20px;
+        cursor: pointer;
+        border-radius: 15px;
+    }
+    .modalSupportInfo button:hover { /*Hace que cambie de color cuando se toca el button con el mouse*/
+        background-color: #0a8d71;
+        color: white;
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    }
 </style>
 <head>
     <meta charset="UTF-8">
@@ -110,6 +146,14 @@
         <button id="AccionesAdm">Opciones administrativas</button>
         <button id="soporte">Ayuda</button>
     </div>
+
+    <div id="popUpSupport" class="modalSupport">   
+        <div class="modalSupportInfo">
+            <h2>Soporte</h2>
+            <p>Si necesitas ayuda, por favor contacta con nuestro equipo de soporte: <b>506 96325875</b></p>
+            <button class="closeSupportModal">Cerrar</button>
+        </div>
+    </div> 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -150,7 +194,23 @@
     document.getElementById('iniciarSesion').addEventListener('click', () => {
         window.location.href = 'login.html';
     });
+    
+    const soporteBtn = document.getElementById('soporte');
+    const modalSupport = document.getElementById('popUpSupport');
+    const cerrarBtns = document.querySelectorAll('.closeSupportModal');
+    soporteBtn.addEventListener('click', () => {
+        modalSupport.style.display = 'block';
+    });
+    cerrarBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            modalSupport.style.display = 'none';
+        });
+    });
+    window.addEventListener('click', (event) => {
+        if (event.target === modalSupport) {
+            modalSupport.style.display = 'none';
+        }
+    });
 </script>
-    </script>
 </body>
 </html>
