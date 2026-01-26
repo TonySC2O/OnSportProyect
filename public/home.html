@@ -162,6 +162,7 @@
     </div> 
     
 <script>
+    //Geolocation
     document.addEventListener('DOMContentLoaded', () => {
 
         if (!navigator.geolocation) {
@@ -194,14 +195,21 @@
             }
         );
     });
-
+    //Button actions
     document.getElementById('registro').addEventListener('click', () => {
         window.location.href = 'register.html';
     });
     document.getElementById('iniciarSesion').addEventListener('click', () => {
         window.location.href = 'login.html';
     });
-    
+    document.getElementById('VerPolis').addEventListener('click', () => {
+        window.location.href = 'VerPolideportivo.html';
+    });
+    document.getElementById('VerReservas').addEventListener('click', () => {
+        window.location.href = 'verReserva.html';
+    });
+
+    // Support modal logic
     const soporteBtn = document.getElementById('soporte');
     const modalSupport = document.getElementById('popUpSupport');
     const cerrarBtns = document.querySelectorAll('.closeSupportModal');
@@ -218,6 +226,7 @@
             modalSupport.style.display = 'none';
         }
     });
+
 </script>
 </body>
 </html>
