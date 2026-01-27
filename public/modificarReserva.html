@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Temporal-->
+<style> 
+
+    h2 {
+        margin-top: 24px; 
+        margin-bottom: 16px;
+        margin-left: 56px;
+        font-size: 28px;
+    }
+
+    #contenido {
+        display: grid;
+        padding: 24px;
+        gap: 16px;
+        grid-template-columns: 1.2fr 1fr;
+        
+    }
+    
+    #columnaIzquierda, #columnaDerecha {
+        display: flex;
+        flex-direction: column;
+        gap: 16px; 
+    }
+
+    #columnaIzquierda h2 {
+        text-align: center;
+        position: relative;
+        left: -24px;
+    }
+
+    #columnaDerecha {
+        margin-top: 64px;
+    }
+
+    .bloquesDerechaInferiores {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    #calendario {
+        width: fit-content;
+        height: 450px;
+        margin: 0 auto;
+        
+    
+    }
+
+    .pika-single {
+        transform: scale(2);  
+        transform-origin: top center; 
+    }
+
+    #reservas {
+        display: flex;
+        flex-direction: column;
+
+        width: 80%;
+        height: 300px;
+        margin: 0 auto;
+        
+        overflow: hidden;
+        background-color: white;
+    }
+
+    #reservas header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 2px solid #000000;
+        background-color: #E9FFF1;
+        color: rgb(0, 0, 0);
+        padding: 12px 16px;
+        }   
+
+    #listaReservas {
+        flex: 1;
+        padding: 12px;
+        overflow-y: auto;
+        border: 2px solid #000000;
+        background-color: white;
+        
+    }
+
+    .bloquesDerecha {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 28px;
+        font-size: 24px;
+
+        border: 2px solid #07137e;
+        border-radius: 40px;
+        padding: 32px;
+        background-color: #E9FFF1;
+    }
+
+    .bloquesDerecha h3 {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 30px;
+    }
+
+    .bloquesDerecha input {
+        width: 270px;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 16px;
+        
+    }
+
+    .bloquesDerecha input[type="checkbox"] {
+        width: auto;
+        height: auto;
+    }
+
+    .inputHora input{
+        width: 84px;
+    }
+
+    .inputCheckBox {
+        display: flex;
+        gap: 8px;
+    }
+
+    .botones button {
+        padding: 16px 32px;      
+        font-size: 18px;         
+        border-radius: 10px;      
+        cursor: pointer;
+        border: 1px solid #000000;
+        background-color: #ffffff;
+        color: #000000;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Modificar reservas</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+</head>
+<body>
+    <header>
+        <div class="barraInicio">
+            <div class="barraInicioIzquierda">
+                <div class="logoimg">
+                    <img src="On-Sport_logo.png" alt="Logo On-Sport" class="logo">
+                </div>
+                <p class="titulo">Gestionar Reservas</p>
+            </div>
+            <div class="barraInicioDerecha">
+                <button id="registro">Registrarse</button>
+                <button id="iniciarSesion">Iniciar Sesión</button>
+            </div> 
+        </div>
+    </header>
+
+    <h2>Administrador actual: <span></span></h2>
+    <hr>
+
+    <div id= "contenido">
+
+
+        <div id="columnaIzquierda">
+
+            <h2>Calendario de Reservas</h2>
+            <div id="calendario"></div>
+           
+            <section id="reservas">
+
+                <header>
+                    <h3>Reservas:</h3>
+                    <span></span>
+                </header>
+
+                <div id="listaReservas">
+                    
+                </div>
+            </section>
+        </div>
+
+        <div id="columnaDerecha">
+
+            <div class="bloquesDerecha">
+                <h3>Reserva seleccionada</h3>
+            </div>
+
+            <div class="bloquesDerechaInferiores">
+
+                <div class="bloquesDerecha"> 
+                    <h3>Datos no modificables</h3>
+                    
+                    <div>
+                        <input id="nombre" type="text" placeholder="Persona Asociada" disabled>
+                    </div>
+
+                    <div>
+                        <input id="email" type="email" placeholder="Email" disabled>
+                    </div>
+
+                    <div>
+                        <input id="telefono" type="text" placeholder="Número de Teléfono" disabled>
+                    </div>
+
+                    <div>
+                    <input id="motivo" type="text" placeholder="Motivo" disabled>
+                    </div>
+
+                    <div>
+                        <input id="coste" type="text" placeholder="Coste Total Reserva" disabled>
+                    </div>
+
+                    <div>
+                    <input id="metodoPago" type="text" placeholder="Método de pago" disabled>
+                    </div>
+                    
+                </div>
+                
+                <div class="bloquesDerecha">
+                    <h3>Datos Reserva</h3>
+                    
+                    <div>
+                        <input id="polideportivo" type="text" placeholder="Polideportivo">
+                    </div>
+
+                    <div>
+                        <input id="espacio" type="text" placeholder="Espacio deportivo">
+                    </div>
+
+                    <div>
+                        <input id="fecha" type="text" placeholder="Fecha Reserva">
+                    </div>
+
+                    <div class="inputHora">
+                        <span>De: </span>
+                        <input id="horaDesde" type="text" placeholder="HH:MM">
+                        <span>a: </span>
+                        <input id="horaHasta" type="text" placeholder="HH:MM">
+                    </div>
+
+                    <div class="inputCheckBox">
+                        <input id="reservaPagada" type="checkbox">
+                        <span>Reserva Pagada</span>
+                    </div>
+
+                    <div class="botones">
+                        <button type="button" class="btn eliminar">Eliminar</button>
+                        <button type="button" class="btn modificar">Modificar</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+    var picker = new Pikaday({
+    field: document.getElementById('calendario'), // el div donde se mostrará
+    bound: false, // hace que se muestre siempre, no como popup
+    container: document.getElementById('calendario'),
+    firstDay: 7, // lunes como primer día de la semana
+    format: 'YYYY-MM-DD',
+    showDaysInNextAndPreviousMonths: true,
+    onSelect: function(date) {
+    console.log('Fecha seleccionada: ' + picker.toString());
+    }
+    });
+    </script>
+
+    <footer>
+        <div class="ficha-1">
+            <h2>ON-SPORT</h2>
+        </div>
+        <div class="ficha-2">
+            <p>Soporte</p>
+            <p>Preguntas Frecuentes</p>
+            <p>Terminos y condiciones</p>             
+            <p>Privacidad</p>      
+            <p>Cookies</p>               
+        </div>
+        <div class="ficha-3">
+            <h2>©2026 Todos los Derechos Reservados</h2>
+        </div>
+    </footer>
+</body>
+</html>
