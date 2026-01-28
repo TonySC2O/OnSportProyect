@@ -5,6 +5,11 @@ const port = 3000;
 app.use(express.json());
 app.use(express.static('public'));
 
+//Se importan las rutas del serverProcesos
+const rutas=require('./serverProcesos');
+app.use('/api', rutas);
+
+//Recibir la ubicación del user
 app.post('/location', (req, res) => {
     const { latitude, longitude } = req.body;
     console.log(`Ubicación recibida: Latitud ${latitude}, Longitud ${longitude}`);
@@ -14,7 +19,6 @@ app.post('/location', (req, res) => {
         longitude
     });
 });
-
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/home.html');

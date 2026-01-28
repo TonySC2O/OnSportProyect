@@ -80,24 +80,26 @@
 </head>
 <body>
     <div class="barraTitulo">
-        <img src="On-Sport_logo.png" alt="Logo" height="150px">
+        <img src="Imagenes/On-Sport_logo.png" alt="Logo" height="150px">
         <div id="registroT">Registrarse</div>
-        <img src="pickelBall.png" class="raquetas" alt="raquetas" height="210px">
-        <img src="tacosYBola.png" class="bolaYTacos" alt="bolaYTacos" height="200px">
+        <img src="Imagenes/pickelBall.png" class="raquetas" alt="raquetas" height="210px">
+        <img src="Imagenes/tacosYBola.png" class="bolaYTacos" alt="bolaYTacos" height="200px">
     </div>   
     <div class="barraInfo">
         <h2>Ingrese la información solicitada</h2>
-        <label for="nombre" id="Nombre">Nombre completo</label>
-        <input type="text" id="Nombre" name="nombre"><br><br>
-        <label for="userName" id="userName">Nombre de usuario</label>
-        <input type="text" id="userName" name="userName"><br><br>
-        <label for="email" id="email">Correo electrónico</label>
-        <input type="text" id="email" name="email"><br><br>
-        <label for="telefono" id="telefono">Numero de telefono </label>
-        <input type="text" id="telefono" name="telefono"><br><br>
-        <label for="password" id="password">Contraseña</label>
-        <input type="text" id="password" name="password"><br><br>
-        <button id="registrarseBtn">Registrarse</button>
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" name="nombre" autocomplete="nombre">
+        <label for="userName">Nombre de usuario</label>
+        <input type="text" id="userName" name="userName" autocomplete="username">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" autocomplete="email">
+        <label for="telefono">Numero de telefono </label>
+        <input type="tel" id="telefono" name="telefono" autocomplete="tel">
+        <label for="password" >Contraseña</label>
+        <input type="text" id="password" name="password" autocomplete="new-password">
+
+        <button type="button" id="registrarseBtn">Registrarse</button>
     </div>
+    <script src="js/register.js"></script>
 </body>
 </html>

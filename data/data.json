@@ -1,30 +1,42 @@
 {
-    "admins": [
-        {
-            "nombre": "Victoria Molina",
-            "username": "vicAdm",
-            "email": "vic@hotmail.com",
-            "telefono": "62157890",
-            "password": "soyAdmin" },
-            {
-            "nombre": "Josue Meza",
-            "username": "josueAdm",
-            "email": "josue@hotmail.com",
-            "telefono": "85693274",
-            "password": "soyAdmin2" },
-            {
-            "nombre": "Tony Solano",
-            "username": "tonyAdm",
-            "email": "tony@hotmail.com",
-            "telefono": "78256938",
-            "password": "soyAdmin3" },
-            {
-            "nombre": "Andres Blanco",
-            "username": "AndresAdm",
-            "email": "andres@hotmail.com",
-            "telefono": "32564895",
-            "password": "soyAdmin4" }
-        ],
-    "users": [],
-    "reservas": []
+  "admins": [
+    {
+      "nombre": "Victoria Molina",
+      "username": "vicAdm",
+      "email": "vic@hotmail.com",
+      "telefono": "62157890",
+      "password": "soyAdmin"
+    },
+    {
+      "nombre": "Josue Meza",
+      "username": "josueAdm",
+      "email": "josue@hotmail.com",
+      "telefono": "85693274",
+      "password": "soyAdmin2"
+    },
+    {
+      "nombre": "Tony Solano",
+      "username": "tonyAdm",
+      "email": "tony@hotmail.com",
+      "telefono": "78256938",
+      "password": "soyAdmin3"
+    },
+    {
+      "nombre": "Andres Blanco",
+      "username": "AndresAdm",
+      "email": "andres@hotmail.com",
+      "telefono": "32564895",
+      "password": "soyAdmin4"
+    }
+  ],
+  "users": [
+    {
+      "nombre": "Carmen Lira",
+      "username": "lira4k",
+      "email": "lira@hotmail.com",
+      "telefono": "12325698",
+      "password": "kk123"
+    }
+  ],
+  "reservas": []
 }
