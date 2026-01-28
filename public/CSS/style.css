@@ -7,6 +7,7 @@ body{
     font-family: Arial, sans-serif;
     background: #f1eadd;
     color: #333;
+    margin: 0;
 }
 .container{
     width: 90%;
@@ -74,29 +75,193 @@ body{
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        padding: 44px 0;
     }
+    /*-------------------------Inicio-------------------------------------------------------*/
+       .barraImagen{
+        background-image: url(/public/Images/bannerSports.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        justify-content: center;
+        align-items: center;
+        height: 250px;
+        width: 100vw;
+        display: flex;
+        font-size: 60px;
+        color: rgb(248, 245, 245);
+        font-weight: bold;
+        text-shadow: 1px 1px 4px rgb(0, 0, 0);
+    }
+        .opcionesInicio {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+    }
+    .opcionesInicio button {
+        background-color: #ffffff;
+        color: #06745c;
+        border: none;
+        padding: 20px 30px;
+        font-size: 22px;
+        font-weight: bold;
+        border-radius: 15px;
+        cursor: pointer;
+        box-shadow:0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    }
+    .opcionesInicio button:hover { /*Hace que cambie de color cuando se toca el button con el mouse*/
+        background-color: #59da78;
+        color: rgb(0, 0, 0);
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    }
+    #soporte {
+        background-color: #ffffff;
+        color: #06745c;
+        border: none;
+        padding: 20px 30px;
+        font-size: 22px;
+        font-weight: bold;
+        border-radius: 15px;
+        cursor: pointer;
+        box-shadow:0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    }
+    #soporte:hover { /*Hace que cambie de color cuando se toca el button con el mouse*/
+        background-color: #59da78;
+        color: rgb(0, 0, 0);
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    }
+    #AccionesAdm {/*Ocultar boton de acciones de admin, solo visible si ingresa un admin*/
+        display: none;/*Cambiar display en logica*/
+    }
+    #soporte {
+        position:fixed;
+        bottom:20px;
+        right:20px;
+    }
+    .modalSupport {
+        display: none; 
+        position: fixed; 
+        z-index: 1000; 
+        left: 0;
+        top: 0;
+        width: 100%; 
+        height: 100%;
+        background-color: rgba(0,0,0,0.6); 
+    }
+    .modalSupportInfo {
+        background-color: #159281;
+        margin: 10% auto; 
+        padding: 25px;
+        width: 400px; 
+        border-radius: 15px;
+        text-align: center;
+        color: white;
+        font-size: 25px;
+    }
+    .modalSupportInfo button {
+        background-color: #ffffff;
+        color: #06745c;
+        border: none;
+        padding: 10px 20px;
+        margin-top: 20px;
+        font-size: 20px;
+        cursor: pointer;
+        border-radius: 15px;
+    }
+    .modalSupportInfo button:hover { /*Hace que cambie de color cuando se toca el button con el mouse*/
+        background-color: #59da78;
+        color: rgb(0, 0, 0);
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    }
+    /*------------------------VerPolideportivo----------------------------------------------*/
     .deportes{
         margin-top: 80px;
         width: 100%;
         height: auto;
         display: grid;
         grid-template-columns: repeat(2, 2fr);
-        grid-template-rows: repeat(2, 2fr);
+        grid-template-rows: repeat(4, 2fr);
         grid-template-areas: "layout1 layout2" 
-                             "layout3 layout4";
+                             "layout3 layout4"
+                             "layout5 layout6"
+                             "layout7 layout8";
         column-gap: 30px;
         row-gap: 60px;
     }
-    .imagen{
-        grid-area: arriba1;
+    .imagen1{
         width: 275px;
         height: 100%;
         overflow: hidden;
-        background-image: url(/public/basketball2.png);
+        background-image: url(/public/Images/basketball.png);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
+        margin-right: 15px;
+    }
+    .imagen2{
+        width: 275px;
+        height: 100%;
+        overflow: hidden;
+        background-image: url(/public/Images/basketball2.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        margin-right: 15px;
+    }
+    .imagen3{
+        width: 275px;
+        height: 100%;
+        overflow: hidden;
+        background-image: url(/public/Images/basketball2.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        margin-right: 15px;
+    }
+    .imagen4{
+        width: 275px;
+        height: 100%;
+        overflow: hidden;
+        background-image: url(/public/Images/basketball2.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        margin-right: 15px;
+    }
+    .imagen5{
+        width: 275px;
+        height: 100%;
+        overflow: hidden;
+        background-image: url(/public/Images/basketball2.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        margin-right: 15px;
+    }
+    .imagen6{
+        width: 275px;
+        height: 100%;
+        overflow: hidden;
+        background-image: url(/public/Images/basketball2.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        margin-right: 15px;
+    }
+    .imagen7{
+        width: 275px;
+        height: 100%;
+        overflow: hidden;
+        background-image: url(/public/Images/basketball2.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        margin-right: 15px;
     }
     .layout1{
         grid-area: layout1;
@@ -104,10 +269,6 @@ body{
         border-radius: 61.14px;
         overflow: hidden;
         height: 300px;
-        grid-template-columns: repeat(2, 2fr);
-        grid-template-rows: repeat(3, 1fr);
-        grid-template-areas: "arriba1 arriba2" 
-                             "abajo3 abajo3";
     }
     .layout2{
         grid-area: layout2;
@@ -115,10 +276,6 @@ body{
         border-radius: 61.14px;
         overflow: hidden;
         height: 300px;
-        grid-template-columns: repeat(2, 2fr);
-        grid-template-rows: repeat(3, 1fr);
-        grid-template-areas: "arriba1 arriba2" 
-                             "abajo3 abajo3";
     }
     .layout3{
         grid-area: layout3;
@@ -126,10 +283,6 @@ body{
         border-radius: 61.14px;
         overflow: hidden;
         height: 300px;
-        grid-template-columns: repeat(2, 2fr);
-        grid-template-rows: repeat(3, 1fr);
-        grid-template-areas: "arriba1 arriba2" 
-                             "abajo3 abajo3";
     }
     .layout4{
         grid-area: layout4;
@@ -137,28 +290,44 @@ body{
         border-radius: 61.14px;
         overflow: hidden;
         height: 300px;
-        grid-template-columns: repeat(2, 2fr);
-        grid-template-rows: repeat(3, 1fr);
-        grid-template-areas: "arriba1 arriba2" 
-                             "abajo3 abajo3";
     }
+    .layout5{
+        grid-area: layout5;
+        background-color: rgb(213, 250, 238);
+        border-radius: 61.14px;
+        overflow: hidden;
+        height: 300px;
+    }
+    .layout6{
+        grid-area: layout6;
+        background-color: rgb(213, 250, 238);
+        border-radius: 61.14px;
+        overflow: hidden;
+        height: 300px;
+    }
+    .layout7{
+        grid-area: layout7;
+        background-color: rgb(213, 250, 238);
+        border-radius: 61.14px;
+        overflow: hidden;
+        height: 300px;
+    }
+
     .layout-main{
         display: flex;
         flex-wrap: wrap;
-        height: 200px;
+        height: 100%;
     }
     .layout-texto{
-        grid-area: arriba2;
         padding-top: 15px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         height: 100%;
+        padding: 40px 0;
     }
-    .tags{
-        grid-area: abajo3;
-        display: flex;
-        flex-wrap: wrap;
+    .layout-texto p{
+        font-size: 20px;
     }
     /*------------------------Footer------------------------------------------------------*/
     footer{
@@ -171,6 +340,7 @@ body{
     min-width: 80%;
     flex-wrap: wrap;
     padding: 0 80px;
+    margin-top: 44px;
 }
 .ficha-1{
     width: 100%;

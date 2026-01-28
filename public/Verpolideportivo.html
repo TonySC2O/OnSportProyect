@@ -11,7 +11,11 @@
         <div class="barraInicio">
             <div class="barraInicioIzquierda">
                 <div class="logoimg">
+<<<<<<< Updated upstream
                     <img src="Imagenes/On-Sport_logo.png" alt="Logo On-Sport" class="logo">
+=======
+                    <img src="Images/On-Sport_logo.png" alt="Logo On-Sport" class="logo">
+>>>>>>> Stashed changes
                 </div>
                 <p class="titulo">Ver Polideportivo</p>
             </div>
@@ -27,7 +31,7 @@
             <div class="deportes">
                 <div class="layout1">
                     <div class="layout-main">
-                        <div class="imagen"></div>
+                        <div class="imagen1"></div>
                         <div class="layout-texto">
                             <div class="nombre">
                                 <h2>Polideportivo</h2>
@@ -37,11 +41,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tags"></div>
                 </div>
                 <div class="layout2">
                     <div class="layout-main">
-                        <div class="imagen"></div>
+                        <div class="imagen2"></div>
                         <div class="layout-texto">
                             <div class="nombre">
                                 <h2>Polideportivo</h2>
@@ -51,11 +54,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tags"></div>
                 </div>
                 <div class="layout3">
                     <div class="layout-main">
-                        <div class="imagen"></div>
+                        <div class="imagen3"></div>
                         <div class="layout-texto">
                             <div class="nombre">
                                 <h2>Polideportivo</h2>
@@ -65,11 +67,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tags"></div>
                 </div>
                 <div class="layout4">
                     <div class="layout-main">
-                        <div class="imagen"></div>
+                        <div class="imagen4"></div>
                         <div class="layout-texto">
                             <div class="nombre">
                                 <h2>Polideportivo</h2>
@@ -79,7 +80,53 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tags"></div>
+                </div>
+                <div class="layout5">
+                    <div class="layout-main">
+                        <div class="imagen5"></div>
+                        <div class="layout-texto">
+                            <div class="nombre">
+                                <h2>Polideportivo</h2>
+                            </div>
+                            <div class="direccion">
+                                <p>Alajuela-Palmares</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layout6">
+                    <div class="layout-main">
+                        <div class="imagen6"></div>
+                        <div class="layout-texto">
+                            <div class="nombre">
+                                <h2>Polideportivo</h2>
+                            </div>
+                            <div class="direccion">
+                                <p>Alajuela-Palmares</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layout7">
+                    <div class="layout-main">
+                        <div class="imagen7"></div>
+                        <div class="layout-texto">
+                            <div class="nombre">
+                                <h2>Polideportivo</h2>
+                            </div>
+                            <div class="direccion">
+                                <p>Alajuela-Palmares</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="soporte">Ayuda</button>
+            <div id="popUpSupport" class="modalSupport">
+                <div class="modalSupportInfo">
+                    <h2>Soporte</h2>
+                    <p>Si necesitas ayuda, por favor contacta con nuestro equipo de soporte: <b>506 96325875</b></p>
+                    <button class="closeSupportModal">Cerrar</button>
                 </div>
             </div>
         </main>
@@ -99,5 +146,67 @@
             <h2>©2026 Todos los Derechos Reservados</h2>
         </div>
     </footer>
+<script>
+    //Geolocation
+    document.addEventListener('DOMContentLoaded', () => {
+
+        if (!navigator.geolocation) {
+            console.warn('Geolocalización no soportada');
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const { latitude, longitude } = position.coords;
+
+                console.log('Ubicación obtenida:', latitude, longitude);
+
+                fetch('/location', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ latitude, longitude }),
+                })
+                .then(() => {
+                    console.log('Ubicación enviada al servidor');
+                })
+                .catch(error => {
+                    console.error('Error enviando ubicación:', error);
+                });
+            },
+            (error) => {
+                console.warn('Error de geolocalización:', error.code);
+            }
+        );
+    });
+    //Button actions
+    document.getElementById('registro').addEventListener('click', () => {
+        window.location.href = 'register.html';
+    });
+    document.getElementById('iniciarSesion').addEventListener('click', () => {
+        window.location.href = 'login.html';
+    });
+
+
+    // Support modal logic
+    const soporteBtn = document.getElementById('soporte');
+    const modalSupport = document.getElementById('popUpSupport');
+    const cerrarBtns = document.querySelectorAll('.closeSupportModal');
+    soporteBtn.addEventListener('click', () => {
+        modalSupport.style.display = 'block';
+    });
+    cerrarBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            modalSupport.style.display = 'none';
+        });
+    });
+    window.addEventListener('click', (event) => {
+        if (event.target === modalSupport) {
+            modalSupport.style.display = 'none';
+        }
+    });
+
+</script>
 </body>
 </html>
