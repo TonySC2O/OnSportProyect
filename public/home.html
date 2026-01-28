@@ -127,9 +127,6 @@
         transform: scale(1.05);
         box-shadow: 0 6px 15px rgba(0,0,0,0.4);
     }
-    .barraPerfil{
-        display:none;
-    }
 </style>
 <head>
     <meta charset="UTF-8">
@@ -143,6 +140,7 @@
         <div>
             <button id="registro">Registrarse</button>
             <button id="iniciarSesion">Iniciar Sesión</button>
+            <button id="logout" style="display:none;">Cerrar Sesión</button>
         </div> 
     </div>
 
@@ -234,7 +232,17 @@
     const rol=localStorage.getItem('role');
     if(rol==='admin'){
         document.getElementById('AccionesAdm').style.display='inline-block';
+    }//Mostrar boton de logout, esconbder login y registro si hay sesion iniciada(local.storege con rol)
+    if(rol){//Si hay rol en localstorage, solo se muestra el cerrar sesion
+        document.getElementById('iniciarSesion').style.display='none';
+        document.getElementById('registro').style.display='none';
+        document.getElementById('logout').style.display='inline-block';
     }
+    //Limpia el local.storage y devuelve a home
+    document.getElementById('logout').addEventListener('click', () => {
+        localStorage.clear();
+        window.location.href='home.html';
+    });
 
 </script>
 </body>
