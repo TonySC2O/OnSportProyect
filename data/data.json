@@ -36,6 +36,13 @@
       "email": "lira@hotmail.com",
       "telefono": "12325698",
       "password": "kk123"
+    },
+    {
+      "nombre": "Eduardo Molleja",
+      "username": "Mangu26",
+      "email": "noHayMolleja@gmail.com",
+      "telefono": "65988754",
+      "password": "123456"
     }
   ],
   "reservas": []

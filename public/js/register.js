@@ -15,5 +15,8 @@ document.getElementById('registrarseBtn').addEventListener('click', () => {
         })
     })
     .then(res=>res.json())
-    .then(data=>{alert(data.message);})
+    .then(data=>{
+        alert(data.message)
+        document.querySelectorAll('input').forEach(input => input.value = "")
+    ;})
 });
