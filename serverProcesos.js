@@ -20,3 +20,32 @@ router.post('/register', (req, res) => {
     fs.writeFileSync(datapath,JSON.stringify(data,null,2));
     res.status(201).json({message:'Usuario registrado exitosamente'});
 });
+
+//Ruta para iniciar sesion
+router.post('/login',(req,res) =>{
+    const {username,password}=req.body;
+    const data= JSON.parse(fs.readFileSync(datapath,'utf8'));
+
+    const admin=data.admins.find(//Ciclo para buscar admins en el json
+        a=>a.username===username && a.password===password);
+    if(admin){
+        console.log(admin);
+        return res.status(200).json({
+            message:'Inicio de sesión exitoso',
+            role:'admin'
+        });
+    }
+
+    const user=data.users.find(//Ciclo para buscar users en el json
+        u=>u.username===username && u.password===password
+    );
+
+    if(user){
+        console.log(user);
+        return res.status(200).json({
+            message:'Inicio de sesión exitoso',
+            role:'user'
+        });
+    }
+    res.status(401).json({message:'El usuario ingredado no existe o la contraseña es incorrecta'});
+});

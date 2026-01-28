@@ -5,28 +5,32 @@
       "username": "vicAdm",
       "email": "vic@hotmail.com",
       "telefono": "62157890",
-      "password": "soyAdmin"
+      "password": "soyAdmin",
+      "role": "admin"
     },
     {
       "nombre": "Josue Meza",
       "username": "josueAdm",
       "email": "josue@hotmail.com",
       "telefono": "85693274",
-      "password": "soyAdmin2"
+      "password": "soyAdmin2",
+      "role": "admin"
     },
     {
       "nombre": "Tony Solano",
       "username": "tonyAdm",
       "email": "tony@hotmail.com",
       "telefono": "78256938",
-      "password": "soyAdmin3"
+      "password": "soyAdmin3",
+      "role": "admin"
     },
     {
       "nombre": "Andres Blanco",
       "username": "AndresAdm",
       "email": "andres@hotmail.com",
       "telefono": "32564895",
-      "password": "soyAdmin4"
+      "password": "soyAdmin4",
+      "role": "admin"
     }
   ],
   "users": [
@@ -35,14 +39,16 @@
       "username": "lira4k",
       "email": "lira@hotmail.com",
       "telefono": "12325698",
-      "password": "kk123"
+      "password": "kk123",
+      "role": "user"
     },
     {
       "nombre": "Eduardo Molleja",
       "username": "Mangu26",
       "email": "noHayMolleja@gmail.com",
       "telefono": "65988754",
-      "password": "123456"
+      "password": "123456",
+      "role": "user"
     }
   ],
   "reservas": []

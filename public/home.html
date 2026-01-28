@@ -127,6 +127,9 @@
         transform: scale(1.05);
         box-shadow: 0 6px 15px rgba(0,0,0,0.4);
     }
+    .barraPerfil{
+        display:none;
+    }
 </style>
 <head>
     <meta charset="UTF-8">
@@ -161,6 +164,20 @@
         </div>
     </div> 
     
+    <div id="btns_RegYlog">
+        <a href="register.html">Registrarse</a>
+        <a href="login.html">Iniciar Sesión</a>
+    </div>
+
+    <div id="barraPerfil">
+        <button id="btnPerfil">Perfil</button>
+    </div>
+
+    <div id="barraPerfilInfo">
+        <p>id="nombreUsuario"</p>
+        <p>id="emailUsuario"</p>
+        <button id="logoutBtn">Cerrar Sesión</button>
+
 <script>
     //Geolocation
     document.addEventListener('DOMContentLoaded', () => {
@@ -226,6 +243,12 @@
             modalSupport.style.display = 'none';
         }
     });
+
+    //Hacer acciones de admin visibles si es admin
+    const rol=localStorage.getItem('role');
+    if(rol==='admin'){
+        document.getElementById('AccionesAdm').style.display='inline-block';
+    }
 
 </script>
 </body>

@@ -11,7 +11,8 @@ document.getElementById('registrarseBtn').addEventListener('click', () => {
             username:document.getElementById('userName').value,
             email:document.getElementById('email').value,
             telefono:document.getElementById('telefono').value,
-            password:document.getElementById('password').value
+            password:document.getElementById('password').value,
+            role:'user'
         })
     })
     .then(res=>res.json())
@@ -19,4 +20,5 @@ document.getElementById('registrarseBtn').addEventListener('click', () => {
         alert(data.message)
         document.querySelectorAll('input').forEach(input => input.value = "")
     ;})
+    window.location.href='home.html';//Redirigir a Home despues de registrarse
 });
