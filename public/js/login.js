@@ -22,18 +22,9 @@ document.getElementById('logInButton').addEventListener('click', async function(
             return;
         }
 
-        localStorage.setItem('role', data.role)({
-            username:data.username,
-            role:data.role
-        });
+        localStorage.setItem('role', data.role);
 
         window.location.href='home.html';
-        
-        return respuesta.status(200).json({
-            message:'Inicio de sesión exitoso',
-            role:data.role,
-            username:data.username
-        })
 
     } catch (error) {
         console.error('Error:', error);
