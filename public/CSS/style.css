@@ -8,13 +8,22 @@ body{
     background: #f1eadd;
     color: #333;
     margin: 0;
+
 }
 .container{
-    width: 90%;
-    margin: 0 auto;
+    width: 100%;
+    margin-top: 125px;
     height: auto;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
 }
 /*------------------------Header------------------------------------------------------*/
+header{
+position: fixed;
+z-index: 999;
+top: 0;
+}
 .barraInicio {
     background: #06745C;
     background: linear-gradient(90deg, rgba(6, 116, 92, 1) 0%, rgba(66, 214, 113, 1) 100%);
@@ -70,7 +79,7 @@ body{
     }
     /*------------------------Main------------------------------------------------------*/
     main{
-        width: 100%;
+        width: 90%;
         height: auto;
         display: flex;
         flex-wrap: wrap;
