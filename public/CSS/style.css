@@ -8,16 +8,17 @@ body{
     background: #f1eadd;
     color: #333;
     margin: 0;
-
+    /*padding: 20px*/
 }
 .container{
-    width: 100%;
+    width: 100vw;
     margin-top: 125px;
     height: auto;
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
 }
+
 /*------------------------Header------------------------------------------------------*/
 header{
 position: fixed;
@@ -33,6 +34,7 @@ top: 0;
     flex-wrap: wrap;
     justify-content: space-between;
     color:antiquewhite;
+    /*padding: 10px 20px*/
     align-items: center;
     font-size: 50px;
     font-weight: bold;
@@ -85,6 +87,7 @@ top: 0;
         flex-wrap: wrap;
         justify-content: center;
     }
+
     /*-------------------------Inicio-------------------------------------------------------*/
        .barraImagen{
         background-image: url(/public/Images/bannerSports.jpg);
@@ -187,6 +190,93 @@ top: 0;
         transform: scale(1.05);
         box-shadow: 0 6px 15px rgba(0,0,0,0.4);
     }
+    /*------------------------Iniciar sesión ----------------------------------------------*/
+.barraInfo {
+        background-color: #bddcee;
+        display: block;
+        padding: 20px;
+        border-radius: 15px;
+        border: 3px solid #052e6b;
+        margin: 30px auto;
+        width: 50%;
+        align-content: center;
+        color: rgb(0, 0, 0);
+        font-size: 20px;
+        font-weight: bold;
+        text-shadow: 1px 2px 8px rgb(202, 231, 245);
+    }
+    .barraInfo input[type="text"], .barraInfo input[type="password"] {
+        width: 50%;
+        height: 20px;
+        padding: 15px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 20px;
+    }
+    .barraInfo button {
+        background-color: #ffffff;
+        color: #000000;
+        border: none;
+        padding: 10px 20px;
+        margin-top: 20px;
+        font-size: 24px;
+        cursor: pointer;
+        border-radius: 15px;
+    }
+    .barraInfo button:hover { /*Hace que cambie de color cuando se toca el button con el mouse*/
+        background-color:#59da78;
+        color: rgb(0, 0, 0);
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    }
+    .barraInicioDerecha img {
+        height: 125px;
+    }
+    .barraInfo{
+        text-align: center;
+    }
+    .logform{
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+    /*------------------------Registrarse----------------------------------------------*/
+    .barraInfo input[type="email"] {
+        width: 50%;
+        height: 20px;
+        padding: 15px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 20px;
+        display: block;
+    }
+    .barraInfo input[type="tel"] {
+        width: 50%;
+        height: 20px;
+        padding: 15px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 20px;
+        display: block;
+    }
+    .regisform{
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .regisform input {
+        margin-bottom: 5px;
+    }
+
+    /*------------------------modificarReserva----------------------------------------------*/
+
     /*------------------------VerPolideportivo----------------------------------------------*/
     .deportes{
         margin-top: 80px;

@@ -1,126 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
-<style>
-    body {
-        background-color: #f1eadd;
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 20px;
-    }
-    .barraTitulo {
-        background: #06745C;
-        background: linear-gradient(90deg, rgba(6, 116, 92, 1) 0%, rgba(66, 214, 113, 1) 100%);
-        height: 200px; /* Altura del header */
-        width: auto; /* Ancho del header */
-        display: flex;
-        flex-wrap: wrap;
-        justify-content:space-between;
-        color:antiquewhite;
-        padding:10px 20px;
-        align-items: center;
-        font-size: 50px;
-        font-weight: bold;
-        text-shadow: 1px 2px 8px rgb(2, 0, 0);
-        color: rgb(255, 255, 255);
-    }
-    #registroT {
-        margin-left: 145px;
-    }
-    .raquetas {
-        margin-left: auto;
-
-    }
-    .bola{
-        margin-right: 15px;
-    }
-    .barraInfo {
-        background-color: #bddcee;
-        padding: 20px;
-        border-radius: 15px;
-        border: 3px solid #052e6b;
-        margin: 30px auto;
-        width: 50%;
-        align-content: center;
-
-        color: rgb(0, 0, 0);
-        font-size: 20px;
-        font-weight: bold;
-        text-shadow: 1px 2px 8px rgb(202, 231, 245);
-    }
-    .barraInfo input[type="text"] {
-        width: 30%;
-        height: 20px;
-        padding: 15px;
-        margin-top: 10px;
-        border: none;
-        border-radius: 5px;
-        font-size: 20px;
-        display: block;
-    }
-    .barraInfo input[type="email"] {
-        width: 30%;
-        height: 20px;
-        padding: 15px;
-        margin-top: 10px;
-        border: none;
-        border-radius: 5px;
-        font-size: 20px;
-        display: block;
-    }
-    .barraInfo input[type="tel"] {
-        width: 30%;
-        height: 20px;
-        padding: 15px;
-        margin-top: 10px;
-        border: none;
-        border-radius: 5px;
-        font-size: 20px;
-        display: block;
-    }
-    .barraInfo button {
-        background-color: #ffffff;
-        color: #06745c;
-        border: none;
-        padding: 10px 20px;
-        margin-top: 20px;
-        font-size: 24px;
-        cursor: pointer;
-        border-radius: 15px;
-    }
-    .barraInfo button:hover { /*Hace que cambie de color cuando se toca el button con el mouse*/
-        background-color: #59da78;
-        color: rgb(0, 0, 0);
-        transform: scale(1.05);
-        box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-    }
-</style>
+<html lang="es-la" translate="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrarse</title>
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
-    <div class="barraTitulo">
-        <img src="Imagenes/On-Sport_logo.png" alt="Logo" height="150px">
-        <div id="registroT">Registrarse</div>
-        <img src="Imagenes/pickelBall.png" class="raquetas" alt="raquetas" height="210px">
-        <img src="Imagenes/tacosYBola.png" class="bolaYTacos" alt="bolaYTacos" height="200px">
-    </div>   
-    <div class="barraInfo">
-        <h2>Ingrese la información solicitada</h2>
-        <label for="nombre">Nombre completo</label>
-        <input type="text" id="nombre" name="nombre" autocomplete="nombre">
-        <label for="userName">Nombre de usuario</label>
-        <input type="text" id="userName" name="userName" autocomplete="username">
-        <label for="email">Correo electrónico</label>
-        <input type="email" id="email" name="email" autocomplete="email">
-        <label for="telefono">Numero de telefono </label>
-        <input type="tel" id="telefono" name="telefono" autocomplete="tel">
-        <label for="password" >Contraseña</label>
-        <input type="text" id="password" name="password" autocomplete="new-password">
-
-        <button type="button" id="registrarseBtn">Registrarse</button>
+    <header>
+        <div class="barraInicio">
+            <div class="barraInicioIzquierda">
+                <div class="logoimg">
+                    <img src="Images/On-Sport_logo.png" alt="Logo On-Sport" class="logo">
+                </div>
+                <p class="titulo">Registrarse</p>
+            </div>
+            <div class="barraInicioDerecha">
+                <img src="Imagenes/pickelBall.png" alt="raquetas" >
+                <img src="Imagenes/tacosYBola.png" alt="bolaYTacos" >
+            </div> 
+        </div>
+    </header>
+ 
+    <div class="container">
+        <main>
+            <div class="barraInfo">
+                <h2>Ingrese la información solicitada</h2>
+                <div class="regisform">
+                    <label for="nombre">Nombre completo</label>
+                    <input type="text" id="nombre" name="nombre" autocomplete="nombre">
+                    <label for="userName">Nombre de usuario</label>
+                    <input type="text" id="userName" name="userName" autocomplete="username">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" autocomplete="email">
+                    <label for="telefono">Numero de telefono </label>
+                    <input type="tel" id="telefono" name="telefono" autocomplete="tel">
+                    <label for="password" >Contraseña</label>
+                    <input type="text" id="password" name="password" autocomplete="new-password">
+                    <button type="button" id="registrarseBtn">Registrarse</button>
+                </div>
+            </div>
+            <button id="soporte">Ayuda</button>
+            <div id="popUpSupport" class="modalSupport">
+                <div class="modalSupportInfo">
+                    <h2>Soporte</h2>
+                    <p>Si necesitas ayuda, por favor contacta con nuestro equipo de soporte: <b>506 96325875</b></p>
+                    <button class="closeSupportModal">Cerrar</button>
+                </div>
+            </div>
+        </main>
     </div>
     <script src="js/register.js"></script>
+        <script>
+            const soporteBtn = document.getElementById('soporte');
+    const modalSupport = document.getElementById('popUpSupport');
+    const cerrarBtns = document.querySelectorAll('.closeSupportModal');
+    soporteBtn.addEventListener('click', () => {
+        modalSupport.style.display = 'block';
+    });
+    cerrarBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            modalSupport.style.display = 'none';
+        });
+    });
+    window.addEventListener('click', (event) => {
+        if (event.target === modalSupport) {
+            modalSupport.style.display = 'none';
+        }
+    });
+    </script>
 </body>
 </html>
