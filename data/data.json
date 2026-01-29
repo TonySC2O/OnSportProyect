@@ -51,5 +51,27 @@
       "role": "user"
     }
   ],
-  "reservas": []
+  "reservas": [{
+    "persona": "lira4k",
+    "motivo":"Practicar tennis",
+    "costo":"15000",
+    "metodoPago":"Tarjeta",
+    "polideportivo":"Polideportivo5",
+    "espacio":"5",
+    "fechaReserva":"29/01/2026",
+    "horaInicio":"14:00",
+    "horaFin":"15:00"
+  },
+  {
+    "persona": "Mangu26",
+    "motivo":"Jugar bola",
+    "costo":"10000",
+    "metodoPago":"Efectivo",
+    "polideportivo":"Polideportivo2",
+    "espacio":"1",
+    "fechaReserva":"02/02/2026",
+    "horaInicio":"11:00",
+    "horaFin":"13:00"
+  }
+]
 }

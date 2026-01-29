@@ -429,6 +429,36 @@ top: 0;
     .layout-texto p{
         font-size: 20px;
     }
+    /*------------------------verReserva--------------------------------------------------*/
+    .barraReservas {
+    width: 100vw;
+    margin-top: 125px;
+    height: auto;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+    .reservasEncontradas {
+    width: 150px;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 1px 2px 8px rgb(202, 231, 245);
+}
+    .reservasDelUser {
+    background-color: #bddcee;
+    display: block;
+    padding: 20px;
+    border-radius: 15px;
+    border: 3px solid #052e6b;
+    margin: 30px auto;
+    width: 350px;
+    align-content: center;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 1px 2px 8px rgb(202, 231, 245);
+}
     /*------------------------Footer------------------------------------------------------*/
     footer{
     width: 100%;

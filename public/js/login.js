@@ -23,6 +23,7 @@ document.getElementById('logInButton').addEventListener('click', async function(
         }
 
         localStorage.setItem('role', data.role);
+        localStorage.setItem('username', username);
 
         window.location.href='home.html';
 

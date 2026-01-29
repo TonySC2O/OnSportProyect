@@ -49,3 +49,20 @@ router.post('/login',(req,res) =>{
     }
     res.status(401).json({message:'El usuario ingredado no existe o la contraseña es incorrecta'});
 });
+
+//Ruta para el admin vea todas las reservas
+router.get('/reservas',(req,res)=>{
+    const data=JSON.parse(fs.readFileSync(datapath,'utf8'));
+    res.status(200).json({reservas:data.reservas});
+});
+
+//Ruta busca reserva del user que logged in
+router.get('/reservas/:username',(req,res)=>{
+    const {username}=req.params;
+    const data= JSON.parse(fs.readFileSync(datapath,'utf8'));
+    
+    const reservasUser=data.reservas.filter(
+        r=>r.persona===username//Reviar si es gaurdado por nombre o username
+    );
+    res.status(200).json({reservas:reservasUser});
+});
