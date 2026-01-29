@@ -1,58 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
-<style>
-    body {
-        background-color: #f1eadd;
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 20px;
-    }
-    .barraVerReservas {
-        background: #06745C;
-        background: linear-gradient(90deg, rgba(6, 116, 92, 1) 0%, rgba(66, 214, 113, 1) 100%);
-        height: 185px; /* Altura del header */
-        width: auto; /* Ancho del header */
-        display: flex;
-        flex-wrap: wrap;
-        justify-content:space-between;
-        color:antiquewhite;
-        padding:10px 20px;
-        align-items: center;
-        font-size: 50px;
-        font-weight: bold;
-        text-shadow: 1px 2px 8px rgb(2, 0, 0);
-        color: rgb(255, 255, 255);
-    }
-    .titulo {
-        flex:1;
-        text-align: center;
-    }
-    .imagenes {
-        display: flex;
-        gap: 15px;
-        align-items: center;
-    }
-</style>
+<html lang="es-la" translate="no">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ver reservas</title>
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
-    <div class="barraVerReservas"> 
+        <header>
+        <div class="barraInicio">
+            <div class="barraInicioIzquierda">
+                <div class="logoimg">
+                    <img src="Images/On-Sport_logo.png" alt="Logo On-Sport" class="logo">
+                </div>
+                <p class="titulo">Ver Reservas</p>
+            </div>
+            <div class="barraInicioDerecha">
+                <img src="Imagenes/basketball2.png" alt="raquetas" >
+                <img src="Imagenes/tennisMano.png" alt="bolaYTacos" >
+                <img src="Imagenes/football.png" alt="football" >
+            </div> 
+        </div>
+    </header>
 
-    <img src="Imagenes/On-Sport_logo.png" alt="Logo" height="150px">
-    <div class="titulo">Ver Reservas</div>
-    <div class="imagenes">
-        <img src="Imagenes/basketball2.png" alt="basketball" height="180px">
-        <img src="Imagenes/tennisMano.png" alt="tennis" height="180px">
-        <img src="Imagenes/football.png" class="football" alt="football" height="180px">
-    </div>
-    </div>
-
-    <div class="reservasEncontradas"> <!-- Contenedor principal de las reservas -->
-        <h2 class="tituloPanelReservas">Reservas realizadas</h2>
-        <!--Aqui van las reservas encontradas en el JSON del usuario.-->
+    <div class="container">
+        <main>
+            <div class="reservasEncontradas"> <!-- Contenedor principal de las reservas -->
+                <h2 class="tituloPanelReservas">Reservas realizadas</h2>
+                <!--Aqui van las reservas encontradas en el JSON del usuario.-->
+            </div>
+        </main>
     </div>
 
 </body>
