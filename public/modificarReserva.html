@@ -70,6 +70,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        position:  static;
         border: 2px solid #000000;
         background-color: #E9FFF1;
         color: rgb(0, 0, 0);
@@ -140,7 +141,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar reservas</title>
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="/CSS/style.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
     <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
@@ -150,7 +151,7 @@
         <div class="barraInicio">
             <div class="barraInicioIzquierda">
                 <div class="logoimg">
-                    <img src="Imagenes/On-Sport_logo.png" alt="Logo On-Sport" class="logo">
+                    <img src="/Imagenes/On-Sport_logo.png" alt="Logo On-Sport" class="logo">
                 </div>
                 <p class="titulo">Gestionar Reservas</p>
             </div>
@@ -252,17 +253,50 @@
     </footer>
 
     <script>
-    var picker = new Pikaday({
-    field: document.getElementById('calendario'), // el div donde se mostrará
-    bound: false, // hace que se muestre siempre, no como popup
-    container: document.getElementById('calendario'),
-    firstDay: 7, // lunes como primer día de la semana
-    format: 'YYYY-MM-DD',
-    showDaysInNextAndPreviousMonths: true,
-    onSelect: function(date) {
-    console.log('Fecha seleccionada: ' + picker.toString());
-    }
-    });
+        //Funcion para obtener las reservas de una fecha dada y agregarlas en vista
+        function obtenerReservas(fecha) {
+            console.log(fecha)
+            fetch(`/api/modificarReserva/reservas?fecha=${fecha}`) 
+            .then(res => res.json())
+            .then(data => { //En data estan las reservas de dicho dia
+
+                const lista = document.getElementById('listaReservas'); //Se van a agregar en el div de listaReservas
+                lista.innerHTML = ''; //Se limpia el contenedor
+
+                if( !Array.isArray(data)||data.length === 0){ //Valida en caso de no haber reservas ese dia
+                    lista.textContent = 'No hay reservas para este dia';
+                    return;
+                }
+                
+                data.forEach(reserva => {
+                    const item = document.createElement('div');
+                    item.classList.add('reserva'); //Clase de CSS para ver la reserva en div
+
+                    item.textContent = `${reserva.comprobante}  | ${reserva.horaInicio} a ${reserva.horaFin}`;
+
+                    lista.appendChild(item);
+                });
+            });
+        }
+        var picker = new Pikaday({
+        //el calendario siempre se va a mostrar
+        field: document.getElementById('calendario'), 
+        bound: false, 
+        container: document.getElementById('calendario'),
+
+        firstDay: 7, 
+        format: 'YYYY-MM-DD',
+        showDaysInNextAndPreviousMonths: true,
+
+        onSelect: function(date) {
+            const fecha = picker.toString();
+
+            obtenerReservas(fecha);
+        }
+        });
+
+        const fechaActual = new Date().toISOString().split('T')[0]; //Obtiene fecha de hoy y hace formato yyyy-mm-dd
+        obtenerReservas(fechaActual);
     </script>
 
 </body>
