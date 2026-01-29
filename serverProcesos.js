@@ -66,3 +66,18 @@ router.get('/reservas/:username',(req,res)=>{
     );
     res.status(200).json({reservas:reservasUser});
 });
+
+//Ruta para obtener las reservas existentes de una fecha
+router.get('/modificarReserva/reservas', (req, res) => {
+    const fecha = req.query.fecha // Obtiene la fceha
+
+    const ruta = path.join(__dirname, './data/data.json'); 
+    const data = JSON.parse(fs.readFileSync(ruta, 'utf8')); //Lee el Json
+
+    //Cambiar metodo de busqueda al la seccion de datos del json correcta
+    const reservasFecha = data.reservas.filter(r =>   //Filtra reservas por la fecha seleccionada
+        r.fechaReserva === fecha
+    );
+
+    res.json(reservasFecha || []); 
+});
