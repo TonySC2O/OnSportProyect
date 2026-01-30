@@ -413,7 +413,7 @@ top: 0;
         height: 300px;
     }
 
-    .layout-main{
+    .layout_main{
         display: flex;
         flex-wrap: wrap;
         height: 100%;
@@ -428,6 +428,49 @@ top: 0;
     }
     .layout-texto p{
         font-size: 20px;
+    }
+    /*------------------------verEspacioEspecífico----------------------------------------*/
+    .detalles{
+        margin-top: 80px;
+        width: 100%;
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 2fr);
+        grid-template-areas: "columna1 columna2";
+        column-gap: 30px;
+    }
+    .imagenDetalle{
+        grid-area: columna1;
+    }
+    .infoDetalle{
+        grid-area: columna2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .infoDetalle p{
+        font-size: 20px;
+        margin-bottom: 15px;
+        padding: 20px;
+        border-bottom: #333 solid 1px;
+    }
+    #titulo{
+        font-size: 30px;
+        margin-bottom: 15px;
+        padding: 0 20px 20px 0;
+        border-bottom: #333 solid 1px;
+    }
+    #imagen{
+        margin-bottom: 20px;
+        width: 537px;
+        height: 362px;
+    }
+    .insumosDetalle h2{
+        padding: 20px 0;
+    }
+    .insumosDetalle p{
+        font-size: 20px;
+        padding: 0 20px 0 0;
     }
     /*------------------------verReserva--------------------------------------------------*/
     .barraReservas {

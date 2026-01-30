@@ -26,8 +26,8 @@
         <div class="Buscar"></div>
         <main>
             <div class="deportes">
-                <div class="layout1">
-                    <div class="layout-main">
+                <div class="layout1" >
+                    <div class="layout_main" onclick="verEspacioEspecifico(1)">
                         <div class="imagen1"></div>
                         <div class="layout-texto">
                             <div class="nombre">
@@ -39,8 +39,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="layout2">
-                    <div class="layout-main">
+                <div class="layout2" ">
+                    <div class="layout_main" onclick="verEspacioEspecifico(2)">
                         <div class="imagen2"></div>
                         <div class="layout-texto">
                             <div class="nombre">
@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <div class="layout3">
-                    <div class="layout-main">
+                    <div class="layout_main">
                         <div class="imagen3"></div>
                         <div class="layout-texto">
                             <div class="nombre">
@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <div class="layout4">
-                    <div class="layout-main">
+                    <div class="layout_main">
                         <div class="imagen4"></div>
                         <div class="layout-texto">
                             <div class="nombre">
@@ -79,7 +79,7 @@
                     </div>
                 </div>
                 <div class="layout5">
-                    <div class="layout-main">
+                    <div class="layout_main">
                         <div class="imagen5"></div>
                         <div class="layout-texto">
                             <div class="nombre">
@@ -92,7 +92,7 @@
                     </div>
                 </div>
                 <div class="layout6">
-                    <div class="layout-main">
+                    <div class="layout_main">
                         <div class="imagen6"></div>
                         <div class="layout-texto">
                             <div class="nombre">
@@ -105,7 +105,7 @@
                     </div>
                 </div>
                 <div class="layout7">
-                    <div class="layout-main">
+                    <div class="layout_main">
                         <div class="imagen7"></div>
                         <div class="layout-texto">
                             <div class="nombre">
@@ -204,6 +204,11 @@
         }
     });
 
+</script>
+<script>
+    function verEspacioEspecifico(id) {
+        window.location.href = `verEspacioEspecifico.html?id=${id}`;
+    }
 </script>
 </body>
 </html>
