@@ -45,6 +45,7 @@
         height: 450px;
         margin: 0 auto;
         
+        z-index: 1;
     
     }
 
@@ -95,7 +96,7 @@
 
         border: 2px solid #07137e;
         border-radius: 40px;
-        padding: 32px;
+        padding: 16px;
         background-color: #E9FFF1;
     }
 
@@ -112,18 +113,8 @@
         
     }
 
-    .bloquesDerecha input[type="checkbox"] {
-        width: auto;
-        height: auto;
-    }
-
     .inputHora input{
-        width: 84px;
-    }
-
-    .inputCheckBox {
-        display: flex;
-        gap: 8px;
+        width: 106px;
     }
 
     .botones button {
@@ -187,49 +178,99 @@
                         <div class="bloquesDerecha">
                             <h3>Datos no modificables</h3>
                             <div>
-                                <input id="nombre" type="text" placeholder="Persona Asociada" disabled>
+                                <label>Nombre</label>
+                                <input id="nombre" type="text" placeholder="Persona Asociada" readonly>
                             </div>
                             <div>
-                                <input id="email" type="email" placeholder="Email" disabled>
+                                <label>Email</label>
+                                <input id="email" type="email" placeholder="Email" readonly>
                             </div>
                             <div>
-                                <input id="telefono" type="text" placeholder="Número de Teléfono" disabled>
+                                <label>Numero de Telefono</label>
+                                <input id="telefono" type="text" placeholder="Número de Teléfono" readonly>
                             </div>
                             <div>
-                            <input id="motivo" type="text" placeholder="Motivo" disabled>
+                                <label>Motivo</label>
+                                <input id="motivo" type="text" placeholder="Motivo" readonly>
                             </div>
                             <div>
-                                <input id="coste" type="text" placeholder="Coste Total Reserva" disabled>
+                                <label>Coste de Reserva</label>
+                                <input id="coste" type="text" placeholder="Coste Total Reserva" readonly>
                             </div>
                             <div>
-                            <input id="metodoPago" type="text" placeholder="Método de pago" disabled>
+                                <label>Metodo de Pago</label>
+                                <input id="metodoPago" type="text" placeholder="Método de pago" readonly>
                             </div>
                         </div>
                         <div class="bloquesDerecha">
                             <h3>Datos Reserva</h3>
-                            <div>
-                                <input id="polideportivo" type="text" placeholder="Polideportivo">
-                            </div>
-                            <div>
-                                <input id="espacio" type="text" placeholder="Espacio deportivo">
-                            </div>
-                            <div>
-                                <input id="fecha" type="text" placeholder="Fecha Reserva">
-                            </div>
-                            <div class="inputHora">
-                                <span>De: </span>
-                                <input id="horaDesde" type="text" placeholder="HH:MM">
-                                <span>a: </span>
-                                <input id="horaHasta" type="text" placeholder="HH:MM">
-                            </div>
-                            <div class="inputCheckBox">
-                                <input id="reservaPagada" type="checkbox">
-                                <span>Reserva Pagada</span>
-                            </div>
-                            <div class="botones">
-                                <button type="button" class="btn eliminar">Eliminar</button>
-                                <button type="button" class="btn modificar">Modificar</button>
-                            </div>
+                            <form action="/api/modificarReserva/modificar" method="POST">
+
+                                <div>
+                                    <label>Polideportivo</label>
+                                    <input id="polideportivo" name="polideportivo" type="text" placeholder="Polideportivo"> <!--Se usara section? Depende de como se maneje la info de los poli y espacios-->
+                                </div>
+                                <div>
+                                    <label>Espacio</label>
+                                    <input id="espacio" name="espacio" type="text" placeholder="Espacio deportivo">
+                                </div>
+                                <div>
+                                    <label>Fecha de Reserva</label>
+                                    <input id="fecha" name="fechaReserva" type="date" placeholder="Fecha Reserva">
+                                </div>
+                                <div class="inputHora">
+                                    <label for="horaDesde">De:</label>     <!--No encontre otra forma de que solo se puediera seleccionar por horas exactas...-->
+                                    <select id="horaDesde" name="horaInicio">                 <!--Otra opcion seria validar el minuto y solo permitir minuto 0-->
+                                        <option>06:00</option>
+                                        <option>07:00</option>
+                                        <option>08:00</option>
+                                        <option>09:00</option>
+                                        <option>10:00</option>
+                                        <option>11:00</option>
+                                        <option>12:00</option>
+                                        <option>13:00</option>
+                                        <option>14:00</option>
+                                        <option>15:00</option>
+                                        <option>16:00</option>
+                                        <option>17:00</option>
+                                        <option>18:00</option>
+                                        <option>19:00</option>
+                                        <option>20:00</option>
+                                        <option>21:00</option>
+                                        <option>22:00</option>
+                                    </select>
+
+                                    <label for="horaHasta">a:</label>
+                                    <select id="horaHasta" name="horaFin">
+                                        <option>06:00</option>
+                                        <option>07:00</option>
+                                        <option>08:00</option>
+                                        <option>09:00</option>
+                                        <option>10:00</option>
+                                        <option>11:00</option>
+                                        <option>12:00</option>
+                                        <option>13:00</option>
+                                        <option>14:00</option>
+                                        <option>15:00</option>
+                                        <option>16:00</option>
+                                        <option>17:00</option>
+                                        <option>18:00</option>
+                                        <option>19:00</option>
+                                        <option>20:00</option>
+                                        <option>21:00</option>
+                                        <option>22:00</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label>Comprobante</label>
+                                    <input id="comprobante" name ="comprobante" type="text" placeholder="Comprobante" readonly>       
+                                </div>
+                                <div class="botones">
+                                    <button type="submit" name="tipoUso" value="eliminar" class="btn eliminar">Eliminar</button> 
+                                    <button type="submit" name="tipoUso" value="modificar"class="btn modificar">Modificar</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -253,6 +294,23 @@
     </footer>
 
     <script>
+        function seleccionarReserva(reserva){
+            
+            document.getElementById("nombre").value = reserva.nombre;
+            document.getElementById("email").value = reserva.email;
+            document.getElementById("telefono").value = reserva.telefono;
+            document.getElementById("motivo").value = reserva.motivo;
+            document.getElementById("coste").value = reserva.costo;
+            document.getElementById("metodoPago").value = reserva.metodoPago;
+
+            document.getElementById("polideportivo").value = reserva.polideportivo;
+            document.getElementById("espacio").value = reserva.espacio;
+            document.getElementById("fecha").value = reserva.fechaReserva;
+            document.getElementById("horaDesde").value = reserva.horaInicio;
+            document.getElementById("horaHasta").value = reserva.horaFin;
+            document.getElementById("comprobante").value = reserva.comprobante
+        }
+
         //Funcion para obtener las reservas de una fecha dada y agregarlas en vista
         function obtenerReservas(fecha) {
             console.log(fecha)
@@ -273,6 +331,9 @@
                     item.classList.add('reserva'); //Clase de CSS para ver la reserva en div
 
                     item.textContent = `${reserva.comprobante}  | ${reserva.horaInicio} a ${reserva.horaFin}`;
+                    item.addEventListener('click', () => {
+                        seleccionarReserva(reserva);
+                    })
 
                     lista.appendChild(item);
                 });
@@ -297,6 +358,9 @@
 
         const fechaActual = new Date().toISOString().split('T')[0]; //Obtiene fecha de hoy y hace formato yyyy-mm-dd
         obtenerReservas(fechaActual);
+
+        const form = document.getElementById("modificarReserva")
+
     </script>
 
 </body>
