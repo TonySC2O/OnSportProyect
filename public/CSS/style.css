@@ -399,7 +399,7 @@ top: 0;
         flex: 1;
         flex-direction: column;
         justify-content: space-between;
-        padding: 40px 0;
+        padding: 20px 0;
     }
     .direccion{
         height: auto;

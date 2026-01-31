@@ -38,7 +38,7 @@ const layout_main ={
 5:{
     imagen: "Images/Codea.jpg",
     insumos: "Balones de basketball, Balones de volleyball, Redes para aros, Red de volleyball",
-    titulo: "Polideportivo",
+    titulo: "CODEA - Multiuso",
     descripcion: "La cancha multiusos del CODEA permite la práctica de basketball y volleyball, cuenta con iluminación y camerinos.",
     horario: "Lunes a Viernes: 6:00 AM - 8:00 PM",
     precio: "₡14,000 por hora",
