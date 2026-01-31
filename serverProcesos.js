@@ -76,8 +76,63 @@ router.get('/modificarReserva/reservas', (req, res) => {
 
     //Cambiar metodo de busqueda al la seccion de datos del json correcta
     const reservasFecha = data.reservas.filter(r =>   //Filtra reservas por la fecha seleccionada
-        r.fechaReserva === fecha
-    );
+        r.fechaReserva === fecha)
+        .map(reserva => {       //Modifica los elementos de reserva manteniendo los anteriores
+            const infoUser = 
+                data.users.find(u => u.username === reserva.persona) ||
+                data.admins.find(a => a.username === reserva.persona);
+
+            return {
+                username: reserva.persona,
+                nombre: infoUser.nombre,
+                email: infoUser.email,
+                telefono: infoUser.telefono,
+                motivo: reserva.motivo,
+                costo: reserva.costo,
+                metodoPago: reserva.metodoPago,
+                polideportivo: reserva.polideportivo,
+                espacio: reserva.espacio,
+                fechaReserva: reserva.fechaReserva,
+                horaInicio: reserva.horaInicio,
+                horaFin: reserva.horaFin,
+                comprobante: reserva.comprobante
+            };
+        });
 
     res.json(reservasFecha || []); 
 });
+//ruta para modificar los datos de una reserva
+router.post("/modificarReserva/modificar", (req, res) => {
+    const tipoUso = req.body.tipoUso;
+    const comprobante = req.body.comprobante;
+    const polideportivo = req.body.polideportivo;
+    const espacio = req.body.espacio;
+    const fechaReserva = req.body.fechaReserva;
+    const horaInicio = req.body.horaInicio;
+    const horaFin = req.body.horaFin;
+
+    const ruta = path.join(__dirname, './data/data.json');
+    const data = JSON.parse(fs.readFileSync(ruta, 'utf-8'));
+
+    const reserva = data.reservas.find(r => r.comprobante === comprobante);
+    if (!reserva) {
+        return res.status(404).send("Reserva no encontrada");
+    }
+    //editar
+    if(tipoUso === "modificar"){
+        reserva.polideportivo = polideportivo;
+        reserva.espacio = espacio;
+        reserva.fechaReserva = fechaReserva;
+        reserva.horaInicio = horaInicio;
+        reserva.horaFin = horaFin;
+    }
+    //eliminar
+    else if(tipoUso === "eliminar"){
+        data.reservas.splice(reserva, 1);
+    }
+
+    //Guardar cambios
+    fs.writeFileSync(ruta, JSON.stringify(data, null, 2));
+    res.redirect("/modificarReserva.html") //cambiar
+
+})
