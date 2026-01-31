@@ -23,96 +23,98 @@
         </div>
     </header>
     <div class="container">
-        <div class="Buscar"></div>
+        <div class="Buscar">
+            <input type="text" id="buscador" placeholder="Buscar polideportivo..." onkeyup="debounce (buscarPolideportivo, 300)()">
+        </div>
         <main>
             <div class="deportes">
-                <div class="layout1" >
+                <div class="layout" >
                     <div class="layout_main" onclick="verEspacioEspecifico(1)">
                         <div class="imagen1"></div>
                         <div class="layout-texto">
                             <div class="nombre">
-                                <h2>Polideportivo</h2>
+                                <h2>CODEA - Fútbol</h2>
                             </div>
                             <div class="direccion">
-                                <p>Alajuela-Palmares</p>
+                                <p>Monserrat - Alajuela - Alajuela</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="layout2" ">
+                <div class="layout" ">
                     <div class="layout_main" onclick="verEspacioEspecifico(2)">
                         <div class="imagen2"></div>
                         <div class="layout-texto">
                             <div class="nombre">
-                                <h2>Polideportivo</h2>
+                                <h2>BN Arena</h2>
                             </div>
                             <div class="direccion">
-                                <p>Alajuela-Palmares</p>
+                                <p>Hatillo - San José - San José</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="layout3">
-                    <div class="layout_main">
+                <div class="layout">
+                    <div class="layout_main" onclick="verEspacioEspecifico(3)">
                         <div class="imagen3"></div>
                         <div class="layout-texto">
                             <div class="nombre">
-                                <h2>Polideportivo</h2>
+                                <h2>Polideportivo de Cartago</h2>
                             </div>
                             <div class="direccion">
-                                <p>Alajuela-Palmares</p>
+                                <p>Occidental - Cartago - Cartago</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="layout4">
-                    <div class="layout_main">
+                <div class="layout">
+                    <div class="layout_main" onclick="verEspacioEspecifico(4)">
                         <div class="imagen4"></div>
                         <div class="layout-texto">
                             <div class="nombre">
-                                <h2>Polideportivo</h2>
+                                <h2>Estadio Ernesto Rohrmoser</h2>
                             </div>
                             <div class="direccion">
-                                <p>Alajuela-Palmares</p>
+                                <p>Pavas - San José - San José</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="layout5">
-                    <div class="layout_main">
+                <div class="layout">
+                    <div class="layout_main" onclick="verEspacioEspecifico(5)">
                         <div class="imagen5"></div>
                         <div class="layout-texto">
                             <div class="nombre">
-                                <h2>Polideportivo</h2>
+                                <h2>CODEA - Basquetball</h2>
                             </div>
                             <div class="direccion">
-                                <p>Alajuela-Palmares</p>
+                                <p>Monserrat - Alajuela - Alajuela</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="layout6">
-                    <div class="layout_main">
+                <div class="layout">
+                    <div class="layout_main" onclick="verEspacioEspecifico(6)">
                         <div class="imagen6"></div>
                         <div class="layout-texto">
                             <div class="nombre">
-                                <h2>Polideportivo</h2>
+                                <h2>Palacio de los deportes</h2>
                             </div>
                             <div class="direccion">
-                                <p>Alajuela-Palmares</p>
+                                <p>San Francisco - Heredia - Heredia</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="layout7">
-                    <div class="layout_main">
+                <div class="layout">
+                    <div class="layout_main" onclick="verEspacioEspecifico(7)">
                         <div class="imagen7"></div>
                         <div class="layout-texto">
                             <div class="nombre">
-                                <h2>Polideportivo</h2>
+                                <h2>Estadio "Fello" Meza</h2>
                             </div>
                             <div class="direccion">
-                                <p>Alajuela-Palmares</p>
+                                <p>Oriental - Cartago - Cartago</p>
                             </div>
                         </div>
                     </div>
@@ -210,5 +212,8 @@
         window.location.href = `verEspacioEspecifico.html?id=${id}`;
     }
 </script>
+<script src="js/buscador.js">
+</script>
+
 </body>
 </html>

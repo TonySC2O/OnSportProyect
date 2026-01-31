@@ -72,13 +72,37 @@ top: 0;
         transform: scale(1.05);
         box-shadow: 0 6px 15px rgba(0,0,0,0.4);
     }
+    #reservar {
+            background-color: #ffffff;
+            width: 60%;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            margin: 20px auto 0 auto;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 15px;
+        }
+    #reservar:hover {
+        background-color: #59da78;
+        color: rgb(0, 0, 0);
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    }
     .Buscar{
         margin: 0;
-        padding: 0;
+        padding: 15px 40px;
         display: flex;
         width: 100%;
         height: 75px;
         background-color: rgb(197, 197, 197);
+    }
+    #buscador{
+        width: 100%;
+        padding: 10px;
+        font-size: 20px;
+        border: 2px solid #ccc;
+        border-radius: 10px;
     }
     /*------------------------Main------------------------------------------------------*/
     main{
@@ -284,20 +308,14 @@ top: 0;
         width: 100%;
         height: auto;
         display: grid;
-        grid-template-columns: repeat(2, 2fr);
-        grid-template-rows: repeat(4, 2fr);
-        grid-template-areas: "layout1 layout2" 
-                             "layout3 layout4"
-                             "layout5 layout6"
-                             "layout7 layout8";
-        column-gap: 30px;
-        row-gap: 60px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 60px 30px;
     }
     .imagen1{
         width: 275px;
         height: 100%;
         overflow: hidden;
-        background-image: url(/public/Images/basketball.png);
+        background-image: url(/public/Images/Alajuela.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -307,7 +325,7 @@ top: 0;
         width: 275px;
         height: 100%;
         overflow: hidden;
-        background-image: url(/public/Images/basketball2.png);
+        background-image: url(/public/Images/SanJose.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -317,7 +335,7 @@ top: 0;
         width: 275px;
         height: 100%;
         overflow: hidden;
-        background-image: url(/public/Images/basketball2.png);
+        background-image: url(/public/Images/Cartago.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -327,7 +345,7 @@ top: 0;
         width: 275px;
         height: 100%;
         overflow: hidden;
-        background-image: url(/public/Images/basketball2.png);
+        background-image: url(/public/Images/Pavas.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -337,7 +355,7 @@ top: 0;
         width: 275px;
         height: 100%;
         overflow: hidden;
-        background-image: url(/public/Images/basketball2.png);
+        background-image: url(/public/Images/Codea.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -347,7 +365,7 @@ top: 0;
         width: 275px;
         height: 100%;
         overflow: hidden;
-        background-image: url(/public/Images/basketball2.png);
+        background-image: url(/public/Images/Heredia.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -357,57 +375,13 @@ top: 0;
         width: 275px;
         height: 100%;
         overflow: hidden;
-        background-image: url(/public/Images/basketball2.png);
+        background-image: url(/public/Images/Meza.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
         margin-right: 15px;
     }
-    .layout1{
-        grid-area: layout1;
-        background-color: rgb(213, 250, 238);
-        border-radius: 61.14px;
-        overflow: hidden;
-        height: 300px;
-    }
-    .layout2{
-        grid-area: layout2;
-        background-color: rgb(213, 250, 238);
-        border-radius: 61.14px;
-        overflow: hidden;
-        height: 300px;
-    }
-    .layout3{
-        grid-area: layout3;
-        background-color: rgb(213, 250, 238);
-        border-radius: 61.14px;
-        overflow: hidden;
-        height: 300px;
-    }
-    .layout4{
-        grid-area: layout4;
-        background-color: rgb(213, 250, 238);
-        border-radius: 61.14px;
-        overflow: hidden;
-        height: 300px;
-    }
-    .layout5{
-        grid-area: layout5;
-        background-color: rgb(213, 250, 238);
-        border-radius: 61.14px;
-        overflow: hidden;
-        height: 300px;
-    }
-    .layout6{
-        grid-area: layout6;
-        background-color: rgb(213, 250, 238);
-        border-radius: 61.14px;
-        overflow: hidden;
-        height: 300px;
-    }
-    .layout7{
-        grid-area: layout7;
-        background-color: rgb(213, 250, 238);
+    .layout{
         border-radius: 61.14px;
         overflow: hidden;
         height: 300px;
@@ -416,19 +390,39 @@ top: 0;
     .layout_main{
         display: flex;
         flex-wrap: wrap;
-        height: 100%;
+        height: 300px;
+        background-color: rgb(213, 250, 238);
+        cursor: pointer;
     }
     .layout-texto{
-        padding-top: 15px;
         display: flex;
+        flex: 1;
         flex-direction: column;
         justify-content: space-between;
-        height: 100%;
         padding: 40px 0;
+    }
+    .direccion{
+        height: auto;
+        width: 80%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .nombre{
+        height: auto;
+        width: 80%;
+        display: flex;
+        flex-wrap: wrap;
     }
     .layout-texto p{
         font-size: 20px;
     }
+    .resaltado{
+        background-color: yellow;
+    }
+    .oculto {
+      display: none;
+    }
+
     /*------------------------verEspacioEspecífico----------------------------------------*/
     .detalles{
         margin-top: 80px;

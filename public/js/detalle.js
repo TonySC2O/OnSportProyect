@@ -1,20 +1,65 @@
 const layout_main ={
 1:{
-    imagen: "Images/basketball.png",
-    insumos: "Balones de baloncesto, Redes de baloncesto, Zapatos Tennis, Conos de entrenamiento",
-    titulo: "Polideportivo",
-    descripcion: "Marte es el cuarto planeta del sistema solar. Tiene una atmósfera delgada y es conocido como el planeta rojo...",
-    horario: "Lunes a Viernes: 6:00 AM - 10:00 PM",
-    precio: "₡5,000 por hora",
+    imagen: "Images/Alajuela.jpg",
+    insumos: "Sin insumos disponibles",
+    titulo: "CODEA - Cancha de Fútbol",
+    descripcion: "La cancha principal de fútbol del CODEA cuenta con las medidas internacionales FIFA para la práctica del fútbol, cuenta además con camerinos, 250 lux de iluminación, pista y campo de atletismo.",
+    horario: "Lunes a Viernes: 6:00 AM - 8:00 PM",
+    precio: "₡7000 por hora",
     estado: "Disponible"
 },
 2:{
-    imagen: "Images/basketball2.png",
-    insumos: "Sin insumos disponibles",
-    titulo: "Polideportivo",
-    descripcion: "Jupiter es el quinto planeta del sistema solar. Tiene una atmósfera delgada y es conocido como el planeta más grande...",
+    imagen: "Images/SanJose.jpg",
+    insumos: "Balones de fútbol, Balones de basketball, Balones de volleyball, Conos, Zapatos Tennis, Redes para aros, Red de volleyball, Guantes",
+    titulo: "BN Arena",
+    descripcion: "Este complejo deportivo multiusos que a albergado varios juegos centroamericanos y del caribe, cuenta con el espacio requerido para el fútbol, basketball y volleyball.",
     horario: "Lunes a Viernes: 8:00 AM - 8:00 PM",
-    precio: "₡2,000 por hora",
+    precio: "₡20,000 por hora",
+    estado: "No disponible"
+},
+3:{
+    imagen: "Images/Cartago.jpg",
+    insumos: "Balones de fútbol, Balones de basketball, Balones de volleyball, Redes para aros, Red de volleyball",
+    titulo: "Polideportivo",
+    descripcion: "El polideportivo de Cartago cuenta con canchas para la práctica de basketball, volleyball, además de iluminación.",
+    horario: "Domingo a Viernes: 5:30 AM - 9:30 PM  Sábado: 5:30 AM - 4:00 PM",
+    precio: "₡16,000 por hora",
+    estado: "Disponible"
+},
+4:{
+    imagen: "Images/Pavas.jpg",
+    insumos: "Sin insumos disponibles",
+    titulo: "Estadio Ernesto Rohrmoser",
+    descripcion: "Complejo deportivo utilizado en el fútbol de primera división, sede del equipo Sporting F.C., cuenta con camerinos, iluminación y medidas reglamentarias para la práctica del fútbol.",
+    horario: "Domingo a Martes: 6:00 AM - 9:30 PM",
+    precio: "₡25,000 por hora",
+    estado: "Disponible"
+},
+5:{
+    imagen: "Images/Codea.jpg",
+    insumos: "Balones de basketball, Balones de volleyball, Redes para aros, Red de volleyball",
+    titulo: "Polideportivo",
+    descripcion: "La cancha multiusos del CODEA permite la práctica de basketball y volleyball, cuenta con iluminación y camerinos.",
+    horario: "Lunes a Viernes: 6:00 AM - 8:00 PM",
+    precio: "₡14,000 por hora",
+    estado: "Disponible"
+},
+6:{
+    imagen: "Images/Heredia.jpg",
+    insumos: "Balones de fútbol, Balones de basketball, Balones de volleyball, Conos, Zapatos Tennis, Redes para aros, Red de volleyball, Guantes, marcador electrónico, mesa de puntuación",
+    titulo: "Palacio de los deportes",
+    descripcion: "El Palacio de los Deportes es un pabellón deportivo con capacidad para 7500 personas, la arena es escenario habitual de eventos locales, tales como partidos deportivos, conciertos y ferias comerciales. El equipo de baloncesto Ferretería Brenes Barva tiene su sede aquí. En 2004, el estadio fue sede del Campeonato de Futsal de la CONCACAF.",
+    horario: "Lunes a Viernes: 5:00 AM - 9:00 PM    Sábado a Domingo: 7:00 AM - 4:00 PM",
+    precio: "₡40,000 por hora",
+    estado: "Disponible"
+},
+7:{
+    imagen: "Images/Meza.jpg",
+    insumos: "Sin insumos disponibles",
+    titulo: "Estadio José Rafael 'Fello' Meza Ivancovich",
+    descripcion: "Complejo deportivo utilizado en el fútbol de primera división, sede del equipo C.S.Cartagines, cuenta con camerinos, iluminación y cuenta con las medidas internacionales FIFA para la práctica del fútbol.",
+    horario: "Domingo a Martes: 6:00 AM - 9:30 PM",
+    precio: "₡32,000 por hora",
     estado: "No disponible"
 }
 
