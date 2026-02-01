@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pago y Confirmación</title>
+  <link rel="stylesheet" href="/CSS/style.css">
+  <style>
+    .pago-container{max-width:1100px;margin:140px auto;padding:20px;display:flex;gap:20px}
+    .panel{flex:1;background:#fff;border-radius:12px;padding:18px;border:2px solid #dcdcdc}
+    .panel.titulo{background:linear-gradient(90deg,#0bb475,#8be59e);color:#fff;font-size:24px;padding:12px;border-radius:8px;margin-bottom:12px}
+    .datos-list p{margin:8px 0;font-size:18px}
+    .opciones-pago{background:#e9f9ef;border-radius:12px;padding:18px;border:2px solid #bfe6c9}
+    .opciones-pago label{display:block;margin:8px 0;font-size:18px}
+    .acciones{display:flex;justify-content:flex-end;gap:12px;margin-top:16px}
+    .btn{padding:8px 14px;border-radius:8px;border:none;cursor:pointer}
+    .btn.secondary{background:#ddd}
+    .btn.primary{background:#06745c;color:#fff}
+    /* Modal de factura */
+    .modalFactura {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+    .modalFacturaContenido {
+      background-color: #159281;
+      margin: 10% auto;
+      padding: 25px;
+      width: 400px;
+      border-radius: 15px;
+      text-align: center;
+      color: white;
+      font-size: 14px;
+    }
+    .modalFacturaContenido h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+    .modalFacturaContenido p {
+      font-size: 14px;
+      margin: 8px 0;
+      text-align: left;
+    }
+    .modalFacturaContenido button {
+      background-color: #ffffff;
+      color: #06745c;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 15px;
+      font-weight: bold;
+    }
+    .modalFacturaContenido button:hover {
+      background-color: #59da78;
+      color: rgb(0, 0, 0);
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="barraInicio">
+      <div class="barraInicioIzquierda">
+        <div class="logoimg">
+          <img src="Images/On-Sport_logo.png" alt="Logo On-Sport" class="logo">
+        </div>
+        <p class="titulo">Pago y Confirmación</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <main>
+      <div class="pago-container">
+        <div class="panel">
+          <div class="panel titulo">Pago y Confirmación</div>
+          <div class="datos-list">
+            <h3>Datos Reserva</h3>
+            <p><strong>Polideportivo:</strong> <span id="polideportivoText">-</span></p>
+            <p><strong>Espacio:</strong> <span id="espacioText">-</span></p>
+            <p><strong>Motivo:</strong> <span id="motivoText">-</span></p>
+            <p><strong>Fecha Reservada:</strong> <span id="fechaText">-</span></p>
+            <p><strong>Hora de Reserva:</strong> <span id="horaText">-</span></p>
+            <p><strong>Pago Reserva:</strong> ₡<span id="pagoText">0</span></p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel titulo">Opciones de pago</div>
+          <div class="opciones-pago">
+            <label><input type="radio" name="metodoPago" value="Paypal"> Paypal</label>
+            <label><input type="radio" name="metodoPago" value="Sinpe" checked> Sinpe</label>
+            <label><input type="radio" name="metodoPago" value="Efectivo"> Efectivo</label>
+
+            <div style="background:#fef3cd;border:1px solid #ffc107;border-radius:6px;padding:12px;margin-top:16px;font-size:13px;color:#333;line-height:1.6">
+              <p style="margin:0 0 8px 0"><strong>Instrucciones de pago:</strong></p>
+              <ul style="margin:8px 0;padding-left:20px">
+                <li>Enviar sinpe a 6027-3086 a nombre de Tony Solano Carranza, enviar comprobante al mismo número.</li>
+                <li>En caso de pago en efectivo, enviar mensaje a 6027-3086 para concretar el pago.</li>
+                <li>Tiene tres días hábiles tras realizar la reserva para realizar el pago, caso contrario se cancelará la reserva.</li>
+                <li>Reservas no pagadas no permitirán el uso del espacio deportivo, se verificará el estado del pago antes de permitir acceso.</li>
+              </ul>
+            </div>
+
+            <div class="acciones">
+              <button class="btn secondary" id="btnCancelar">Cancelar</button>
+              <button class="btn primary" id="btnRealizar">Realizar Reserva</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="modalFactura" id="modalFactura">
+    <div class="modalFacturaContenido">
+      <h3>Reserva Exitosa</h3>
+      <p><strong>Código Reserva:</strong> <span id="facCodigo"></span></p>
+      <p><strong>Persona asociada:</strong> <span id="facPersona"></span></p>
+      <p><strong>Polideportivo:</strong> <span id="facPoli"></span></p>
+      <p><strong>Espacio:</strong> <span id="facEspacio"></span></p>
+      <p><strong>Motivo:</strong> <span id="facMotivo"></span></p>
+      <p><strong>Fecha:</strong> <span id="facFecha"></span></p>
+      <p><strong>Hora:</strong> <span id="facHora"></span></p>
+      <p><strong>Pago Reserva:</strong> ₡<span id="facPago"></span></p>
+      <button id="btnOk">OK</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="ficha-1">
+      <h2>ON-SPORT</h2>
+    </div>
+    <div class="ficha-2">
+      <p>Soporte</p>
+      <p>Preguntas Frecuentes</p>
+      <p>Terminos y condiciones</p>
+      <p>Privacidad</p>
+      <p>Cookies</p>
+    </div>
+    <div class="ficha-3">
+      <h2>©2026 Todos los Derechos Reservados</h2>
+    </div>
+  </footer>
+
+  <script src="/js/pagoConfirmacion.js"></script>
+</body>
+</html>

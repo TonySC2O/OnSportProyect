@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es-la" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realizar Reserva - On-Sport</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <style>
+        .contenedorReserva {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .columnaDerecha {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .panelFormulario {
+            background-color: #ffffff;
+            border: 2px solid #06745c;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .panelFormulario h3 {
+            color: #06745c;
+            margin-bottom: 10px;
+            font-size: 16px;
+            border-bottom: 2px solid #42d671;
+            padding-bottom: 10px;
+        }
+
+        .panelFormulario label {
+            display: block;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .panelFormulario input,
+        .panelFormulario textarea,
+        .panelFormulario select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+        }
+
+        .panelFormulario textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .panelFormulario button {
+            background-color: #06745c;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .panelFormulario button:hover {
+            background-color: #42d671;
+            color: #000;
+        }
+
+        .panelCalendario {
+            background-color: #ffffff;
+            border: 2px solid #06745c;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .encabezadoCalendario {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .encabezadoCalendario button {
+            background-color: #06745c;
+            color: #ffffff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .encabezadoCalendario button:hover {
+            background-color: #42d671;
+            color: #000;
+        }
+
+        .encabezadoCalendario h2 {
+            color: #06745c;
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .calendario {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .diaSemana {
+            text-align: center;
+            font-weight: bold;
+            color: #06745c;
+            padding: 10px;
+            background-color: #f0f9f6;
+            border-radius: 5px;
+        }
+
+        .dia {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #f9f9f9;
+            transition: all 0.3s;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .dia:hover:not(.otroMes) {
+            background-color: #42d671;
+            color: #ffffff;
+            border-color: #06745c;
+        }
+
+        .dia.seleccionado {
+            background-color: #06745c;
+            color: #ffffff;
+            border: 2px solid #42d671;
+        }
+
+        .dia.otroMes {
+            color: #ccc;
+            cursor: not-allowed;
+            background-color: #f0f0f0;
+        }
+
+        .dia.conReserva {
+            background-color: #ffc107;
+            color: #000;
+            font-weight: bold;
+            border: 2px solid #ff9800;
+        }
+
+        .dia.conReserva:hover:not(.otroMes) {
+            background-color: #ffb300;
+        }
+
+        .panelReservas {
+            background-color: #ffffff;
+            border: 2px solid #06745c;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            max-height: 300px;
+            width: 100%;
+        }
+
+        .panelReservas h3 {
+            color: #06745c;
+            margin-bottom: 10px;
+            font-size: 16px;
+            border-bottom: 2px solid #42d671;
+            padding-bottom: 10px;
+        }
+
+        .infoPanel {
+            background-color: #f0f9f6;
+            border-left: 4px solid #42d671;
+            padding: 10px;
+            border-radius: 3px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .listaReservas {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .reservaItem {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            border-radius: 3px;
+            font-size: 13px;
+            color: #333;
+        }
+
+        .sinReservas {
+            text-align: center;
+            color: #999;
+            padding: 20px;
+            font-style: italic;
+        }
+
+        .botonesAccion {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .botonesAccion button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btnReservar {
+            background-color: #42d671;
+            color: #ffffff;
+        }
+
+        .btnReservar:hover {
+            background-color: #06745c;
+            transform: scale(1.05);
+        }
+
+        .btnCancelar {
+            background-color: #ff6b6b;
+            color: #ffffff;
+        }
+
+        .btnCancelar:hover {
+            background-color: #ff5252;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 1200px) {
+            .contenedorReserva {
+                grid-template-columns: 1fr 1fr;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contenedorReserva {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="barraInicio">
+            <div class="barraInicioIzquierda">
+                <div class="logoimg">
+                    <img src="Images/On-Sport_logo.png" alt="Logo On-Sport" class="logo">
+                </div>
+                <p class="titulo">Realizar Reserva</p>
+            </div>
+            <div class="barraInicioDerecha">
+                <button id="verPerfil">Mi Perfil</button>
+                <button id="logout" style="display:none;">Cerrar Sesión</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <main>
+            <div class="contenedorReserva">
+                <!-- Panel Izquierdo: Formulario -->
+                <div class="panelFormulario">
+                    <h3>Datos de la Reserva</h3>
+
+                    <label for="polideportivo">Polideportivo</label>
+                    <input type="text" id="polideportivo" readonly style="background-color: #f0f0f0; cursor: not-allowed;">
+
+                    <label for="espacio">Espacio Deportivo</label>
+                    <input type="text" id="espacio" readonly style="background-color: #f0f0f0; cursor: not-allowed;">
+
+                    <label for="motivo">Motivo de la Reserva</label>
+                    <textarea id="motivo" placeholder="Describa el motivo de su reserva..."></textarea>
+
+                    <label for="horaInicio">Hora Inicio</label>
+                    <select id="horaInicio">
+                        <option value="">Seleccionar hora</option>
+                        <option value="0:00">0:00</option>
+                        <option value="1:00">1:00</option>
+                        <option value="2:00">2:00</option>
+                        <option value="3:00">3:00</option>
+                        <option value="4:00">4:00</option>
+                        <option value="5:00">5:00</option>
+                        <option value="6:00">6:00</option>
+                        <option value="7:00">7:00</option>
+                        <option value="8:00">8:00</option>
+                        <option value="9:00">9:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="12:00">12:00</option>
+                        <option value="13:00">13:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                        <option value="18:00">18:00</option>
+                        <option value="19:00">19:00</option>
+                        <option value="20:00">20:00</option>
+                        <option value="21:00">21:00</option>
+                        <option value="22:00">22:00</option>
+                        <option value="23:00">23:00</option>
+                    </select>
+
+                    <label for="horaFin">Hora Fin</label>
+                    <select id="horaFin">
+                        <option value="">Seleccionar hora</option>
+                        <option value="0:00">0:00</option>
+                        <option value="1:00">1:00</option>
+                        <option value="2:00">2:00</option>
+                        <option value="3:00">3:00</option>
+                        <option value="4:00">4:00</option>
+                        <option value="5:00">5:00</option>
+                        <option value="6:00">6:00</option>
+                        <option value="7:00">7:00</option>
+                        <option value="8:00">8:00</option>
+                        <option value="9:00">9:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="12:00">12:00</option>
+                        <option value="13:00">13:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                        <option value="18:00">18:00</option>
+                        <option value="19:00">19:00</option>
+                        <option value="20:00">20:00</option>
+                        <option value="21:00">21:00</option>
+                        <option value="22:00">22:00</option>
+                        <option value="23:00">23:00</option>
+                    </select>
+
+                    <div class="botonesAccion">
+                        <button class="btnReservar" id="btnReservar">Reservar</button>
+                        <button class="btnCancelar" id="btnCancelar">Cancelar</button>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Calendario y Reservas -->
+                <div class="columnaDerecha">
+                    <!-- Panel Centro: Calendario -->
+                    <div class="panelCalendario">
+                        <div class="encabezadoCalendario">
+                            <button id="mesAnterior">←</button>
+                            <h2 id="mesActual">Febrero - 2026</h2>
+                            <button id="mesSiguiente">→</button>
+                        </div>
+                        <div class="calendario" id="calendario">
+                            <!-- Se genera dinámicamente -->
+                        </div>
+                    </div>
+
+                    <!-- Panel Derecho: Reservas del Día -->
+                    <div class="panelReservas">
+                        <h3>Reservas del Día</h3>
+                        <div class="infoPanel" id="infoPanel">
+                            Selecciona una fecha en el calendario
+                        </div>
+                        <div class="listaReservas" id="listaReservas">
+                            <div class="sinReservas">Sin reservas previstas</div>
+                        </div>
+                        <div id="fechaSeleccionada" style="font-size: 14px; color: #666; margin-top: auto; text-align: center; font-weight: bold;"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="ficha-1">
+            <h2>ON-SPORT</h2>
+        </div>
+        <div class="ficha-2">
+            <p>Soporte</p>
+            <p>Preguntas Frecuentes</p>
+            <p>Terminos y condiciones</p>
+            <p>Privacidad</p>
+            <p>Cookies</p>
+        </div>
+        <div class="ficha-3">
+            <h2>©2026 Todos los Derechos Reservados</h2>
+        </div>
+    </footer>
+
+    <script src="js/realizarReserva.js"></script>
+</body>
+</html>

@@ -57,6 +57,14 @@
                     <button class="closeSupportModal">Cerrar</button>
                 </div>
             </div>
+            <div id="modalSesion" class="modalSupport" style="display:none;">
+                <div class="modalSupportInfo">
+                    <h2>Sesión Requerida</h2>
+                    <p>Debes iniciar sesión o registrarte para realizar una reserva.</p>
+                    <button id="btnRegistroModal" style="background-color: #42d671; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-right: 10px;">Registrarse</button>
+                    <button id="btnLoginModal" style="background-color: #06745c; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">Iniciar Sesión</button>
+                </div>
+            </div>
         </main>
     </div>
     <footer>
@@ -138,17 +146,60 @@
         //Hacer acciones de admin visibles si es admin
     const rol=localStorage.getItem('role');
     if(rol==='admin'){
-        document.getElementById('AccionesAdm').style.display='inline-block';
+        const accionesAdm = document.getElementById('AccionesAdm');
+        if(accionesAdm) {
+            accionesAdm.style.display='inline-block';
+        }
     }//Mostrar boton de logout, esconbder login y registro si hay sesion iniciada(local.storege con rol)
     if(rol){//Si hay rol en localstorage, solo se muestra el cerrar sesion
-        document.getElementById('iniciarSesion').style.display='none';
-        document.getElementById('registro').style.display='none';
-        document.getElementById('logout').style.display='inline-block';
+        const iniciarSesionBtn = document.getElementById('iniciarSesion');
+        const registroBtn = document.getElementById('registro');
+        const logoutBtn = document.getElementById('logout');
+        
+        if(iniciarSesionBtn) iniciarSesionBtn.style.display='none';
+        if(registroBtn) registroBtn.style.display='none';
+        if(logoutBtn) logoutBtn.style.display='inline-block';
     }
     //Limpia el local.storage y devuelve a home
     document.getElementById('logout').addEventListener('click', () => {
         localStorage.clear();
         window.location.href='home.html';
+    });
+
+    // Botón de reservar - Validar sesión
+    document.getElementById('reservar').addEventListener('click', () => {
+        const rol = localStorage.getItem('role');
+        if (!rol) {
+            // Mostrar modal de sesión requerida
+            document.getElementById('modalSesion').style.display = 'block';
+        } else {
+            // Guardar datos del espacio en localStorage antes de ir a realizar reserva
+            const titulo = document.getElementById('titulo').textContent || 'Espacio Deportivo';
+            const polideportivo = 'Polideportivo'; // Obtener del elemento
+            
+            localStorage.setItem('polideportivo', polideportivo);
+            localStorage.setItem('espacio', titulo);
+            
+            // Ir a realizar reserva
+            window.location.href = 'realizarReserva.html';
+        }
+    });
+
+    // Botones del modal de sesión
+    document.getElementById('btnRegistroModal').addEventListener('click', () => {
+        window.location.href = 'register.html';
+    });
+
+    document.getElementById('btnLoginModal').addEventListener('click', () => {
+        window.location.href = 'login.html';
+    });
+
+    // Cerrar modal de sesión si se hace click fuera
+    window.addEventListener('click', (event) => {
+        const modalSesion = document.getElementById('modalSesion');
+        if (event.target === modalSesion) {
+            modalSesion.style.display = 'none';
+        }
     });
 
 </script>

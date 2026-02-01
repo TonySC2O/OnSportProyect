@@ -87,9 +87,32 @@
       "horaInicio": "12:00",
       "horaFin": "14:00",
       "comprobante": "RC-003"
+    },
+    {
+      "persona": "tonyAdm",
+      "motivo": "reserva",
+      "costo": "2000",
+      "metodoPago": "Sinpe",
+      "polideportivo": "Polideportivo",
+      "espacio": "BN Arena",
+      "fechaReserva": "2026-02-01",
+      "horaInicio": "15:00",
+      "horaFin": "16:00",
+      "comprobante": "RE1769939067892"
+    },
+    {
+      "persona": "tonyAdm",
+      "motivo": "reserva",
+      "costo": "4000",
+      "metodoPago": "Paypal",
+      "polideportivo": "Polideportivo",
+      "espacio": "CODEA - Cancha de Fútbol",
+      "fechaReserva": "2026-02-03",
+      "horaInicio": "16:00",
+      "horaFin": "18:00",
+      "comprobante": "RE1769939273365"
     }
   ],
-  "solicitudesAdmin":[],
-  "polideportivos":[]
-
+  "solicitudesAdmin": [],
+  "polideportivos": []
 }

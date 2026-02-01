@@ -5,8 +5,6 @@ const router = express.Router();
 const fs = require('fs');
 const path = require('path');
 
-module.exports = router;
-
 //Ruta para registrar usuarios
 const datapath=path.join(__dirname,'./data/data.json');
 router.post('/register', (req, res) => {
@@ -163,4 +161,82 @@ router.post("/modificarReserva/modificar", (req, res) => {
     //Guardar cambios
     fs.writeFileSync(ruta, JSON.stringify(data, null, 2));
     res.status(200).json({ message: "Reserva modificada correctamente" });
-})
+});
+
+// Ruta para crear una nueva reserva (pago/confirmación)
+router.post('/crearReserva', (req, res) => {
+        const { persona, motivo, polideportivo, espacio, fechaReserva, horaInicio, horaFin, metodoPago, costo } = req.body;
+        const ruta = path.join(__dirname, './data/data.json');
+        const data = JSON.parse(fs.readFileSync(ruta, 'utf-8'));
+
+        // Validaciones básicas
+        if (!persona || !polideportivo || !espacio || !fechaReserva || !horaInicio || !horaFin) {
+            return res.status(400).json({ message: 'Faltan datos requeridos para crear la reserva' });
+        }
+
+        // Comprobar conflicto de horario
+        const reservasEspacioFecha = data.reservas.filter(
+            r => r.polideportivo === polideportivo && r.espacio === espacio && r.fechaReserva === fechaReserva
+        );
+
+        const inicio = parseInt(horaInicio.split(':')[0], 10);
+        const fin = parseInt(horaFin.split(':')[0], 10);
+
+        const choque = reservasEspacioFecha.some(r => {
+            const inicioR = parseInt(r.horaInicio.split(':')[0], 10);
+            const finR = parseInt(r.horaFin.split(':')[0], 10);
+            return inicio < finR && fin > inicioR;
+        });
+
+        if (choque) {
+            return res.status(409).json({ message: 'Horario no disponible para la reserva' });
+        }
+
+        // Generar comprobante / código de reserva
+        const comprobante = 'RE' + Date.now();
+
+        // Calcular costo si no viene (ejemplo: 2000 por hora)
+        let costoFinal = costo;
+        if (!costoFinal) {
+            const horas = Math.max(1, fin - inicio);
+            costoFinal = String(2000 * horas);
+        }
+
+        const nuevaReserva = {
+            persona,
+            motivo: motivo || 'Sin especificar',
+            costo: String(costoFinal),
+            metodoPago: metodoPago || 'Pendiente',
+            polideportivo,
+            espacio,
+            fechaReserva,
+            horaInicio,
+            horaFin,
+            comprobante
+        };
+
+        data.reservas.push(nuevaReserva);
+        fs.writeFileSync(ruta, JSON.stringify(data, null, 2));
+
+        // Buscar datos de la persona para la factura
+        const infoUser = data.users.find(u => u.username === persona) || data.admins.find(a => a.username === persona) || { nombre: persona };
+
+        const factura = {
+            codigoReserva: comprobante,
+            persona: infoUser.nombre || persona,
+            polideportivo: polideportivo,
+            espacio: espacio,
+            motivo: nuevaReserva.motivo,
+            fechaReserva: fechaReserva,
+            horaInicio: horaInicio,
+            horaFin: horaFin,
+            pagoReserva: nuevaReserva.costo,
+            pagoTotal: nuevaReserva.costo,
+            metodoPago: nuevaReserva.metodoPago,
+            estadoReserva: 'Sin Pagar'
+        };
+
+        res.status(201).json({ message: 'Reserva creada', reserva: nuevaReserva, factura });
+    });
+
+module.exports = router;
