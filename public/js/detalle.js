@@ -10,18 +10,18 @@ const layout_main ={
 },
 2:{
     imagen: "Images/SanJose.jpg",
-    insumos: "Balones de fútbol, Balones de basketball, Balones de volleyball, Conos, Zapatos Tennis, Redes para aros, Red de volleyball, Guantes",
+    insumos: "Balones de fútbol, Balones de baquetbol, Balones de volleyball, Conos, Zapatos Tennis, Redes para aros, Red de volleyball, Guantes",
     titulo: "BN Arena",
-    descripcion: "Este complejo deportivo multiusos que a albergado varios juegos centroamericanos y del caribe, cuenta con el espacio requerido para el fútbol, basketball y volleyball.",
+    descripcion: "Este complejo deportivo multiusos que a albergado varios juegos centroamericanos y del caribe, cuenta con el espacio requerido para el fútbol, basquetbol, volleyball y atletismo.",
     horario: "Lunes a Viernes: 8:00 AM - 8:00 PM",
     precio: "₡20,000 por hora",
     estado: "No disponible"
 },
 3:{
     imagen: "Images/Cartago.jpg",
-    insumos: "Balones de fútbol, Balones de basketball, Balones de volleyball, Redes para aros, Red de volleyball",
-    titulo: "Polideportivo",
-    descripcion: "El polideportivo de Cartago cuenta con canchas para la práctica de basketball, volleyball, además de iluminación.",
+    insumos: "Balones de fútbol, Balones de baquetbol, Balones de volleyball, Redes para aros, Red de volleyball",
+    titulo: "Polideportivo de Catago",
+    descripcion: "El polideportivo de Cartago cuenta con canchas para la práctica de baquetbol, volleyball, además de iluminación.",
     horario: "Domingo a Viernes: 5:30 AM - 9:30 PM  Sábado: 5:30 AM - 4:00 PM",
     precio: "₡16,000 por hora",
     estado: "Disponible"
@@ -37,16 +37,16 @@ const layout_main ={
 },
 5:{
     imagen: "Images/Codea.jpg",
-    insumos: "Balones de basketball, Balones de volleyball, Redes para aros, Red de volleyball",
-    titulo: "Polideportivo",
-    descripcion: "La cancha multiusos del CODEA permite la práctica de basketball y volleyball, cuenta con iluminación y camerinos.",
+    insumos: "Balones de baquetbol, Balones de volleyball, Redes para aros, Red de volleyball",
+    titulo: "CODEA - Multiuso",
+    descripcion: "La cancha multiusos del CODEA permite la práctica de baquetbol y volleyball, cuenta con iluminación y camerinos.",
     horario: "Lunes a Viernes: 6:00 AM - 8:00 PM",
     precio: "₡14,000 por hora",
     estado: "Disponible"
 },
 6:{
     imagen: "Images/Heredia.jpg",
-    insumos: "Balones de fútbol, Balones de basketball, Balones de volleyball, Conos, Zapatos Tennis, Redes para aros, Red de volleyball, Guantes, marcador electrónico, mesa de puntuación",
+    insumos: "Balones de fútbol, Balones de baquetbol, Balones de volleyball, Conos, Zapatos Tennis, Redes para aros, Red de volleyball, Guantes, marcador electrónico, mesa de puntuación",
     titulo: "Palacio de los deportes",
     descripcion: "El Palacio de los Deportes es un pabellón deportivo con capacidad para 7500 personas, la arena es escenario habitual de eventos locales, tales como partidos deportivos, conciertos y ferias comerciales. El equipo de baloncesto Ferretería Brenes Barva tiene su sede aquí. En 2004, el estadio fue sede del Campeonato de Futsal de la CONCACAF.",
     horario: "Lunes a Viernes: 5:00 AM - 9:00 PM    Sábado a Domingo: 7:00 AM - 4:00 PM",
