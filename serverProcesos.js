@@ -116,10 +116,39 @@ router.post("/modificarReserva/modificar", (req, res) => {
 
     const reserva = data.reservas.find(r => r.comprobante === comprobante);
     if (!reserva) {
-        return res.status(404).send("Reserva no encontrada");
+        return res.status(404).json({ message: "Reserva no encontrada"});
     }
     //editar
     if(tipoUso === "modificar"){
+
+        const inicio = parseInt(horaInicio.split(':')[0], 10);
+        const fin = parseInt(horaFin.split(':')[0], 10);
+
+        if(inicio >= fin){
+            return res.status(400).json({message: "Hora de inicio no puede ser mayor o igual que hora de fin"})
+        }
+
+        const reservasEspacioFecha = data.reservas.filter( //Obtener reservas del espacio en la fecha dada
+            r => r.polideportivo === polideportivo &&
+                r.espacio === espacio &&
+                r.fechaReserva === fechaReserva &&
+                r.comprobante !== comprobante //Evitar reserva a cambiar
+        );
+
+        const choqueHorario = reservasEspacioFecha.some( //Si hay una reserva con choque de horario, return True
+            r => { //Funcion para transformar de string a int las horas, debido a errores en validaciones de
+                
+
+                const inicioReserva = parseInt(r.horaInicio.split(':')[0], 10);
+                const finReserva = parseInt(r.horaFin.split(':')[0], 10);
+
+                return inicio < finReserva && fin > inicioReserva
+        });
+
+        if(choqueHorario){ 
+            return res.status(409).json({message:"Horario no disponible"})
+        }
+
         reserva.polideportivo = polideportivo;
         reserva.espacio = espacio;
         reserva.fechaReserva = fechaReserva;
@@ -133,6 +162,5 @@ router.post("/modificarReserva/modificar", (req, res) => {
 
     //Guardar cambios
     fs.writeFileSync(ruta, JSON.stringify(data, null, 2));
-    res.redirect("/modificarReserva.html") //cambiar
-
+    res.status(200).json({ message: "Reserva modificada correctamente" });
 })

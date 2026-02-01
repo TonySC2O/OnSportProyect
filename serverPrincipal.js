@@ -4,7 +4,7 @@ const port = 3000;
 
 app.use(express.json());
 app.use(express.static('public'));
-app.use(express.urlencoded({ extended: true })); //Para leer los forms
+
 
 //Se importan las rutas del serverProcesos
 const rutas=require('./serverProcesos');

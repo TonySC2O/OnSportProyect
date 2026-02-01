@@ -57,11 +57,11 @@
       "motivo": "Practicar tennis",
       "costo": "15000",
       "metodoPago": "Tarjeta",
-      "polideportivo": "Polideportivo5",
+      "polideportivo": "CODEA - Futbol",
       "espacio": "5",
-      "fechaReserva": "2026-01-31",
+      "fechaReserva": "2026-02-02",
       "horaInicio": "11:00",
-      "horaFin": "13:00",
+      "horaFin": "12:00",
       "comprobante": "RC-001"
     },
     {
@@ -74,7 +74,19 @@
       "fechaReserva": "2026-02-02",
       "horaInicio": "11:00",
       "horaFin": "13:00",
-      "comprobante": "RC-001"
+      "comprobante": "RC-002"
+    },
+    {
+      "persona": "Mangu26",
+      "motivo": "Choque",
+      "costo": "10000",
+      "metodoPago": "Efectivo",
+      "polideportivo": "CODEA - Futbol",
+      "espacio": "5",
+      "fechaReserva": "2026-02-02",
+      "horaInicio": "12:00",
+      "horaFin": "14:00",
+      "comprobante": "RC-003"
     }
   ]
 }
