@@ -161,6 +161,34 @@ router.post("/modificarReserva/modificar", (req, res) => {
     res.status(200).json({ message: "Reserva modificada correctamente" });
 });
 
+//Ruta para enviar solicitud de cambio de usuario o polideportivo
+router.post('/gestionAdmin', (req, res) => {
+    const persona = req.body.persona;
+    const opcion = req.body.opcion;
+    const descripcion = req.body.descripcion;
+    const fecha = req.body.fecha;
+
+    const ruta = path.join(__dirname, './data/data.json');
+    const data = JSON.parse(fs.readFileSync(ruta, 'utf-8'));
+
+    if(!persona || !opcion || !descripcion){
+        return res.status(400).json({
+            message:'Datos Incompletos.'
+        });
+    }
+
+    data.solicitudesAdmin.push({
+        persona,
+        opcion,
+        descripcion,
+        fecha
+    });
+
+    fs.writeFileSync(ruta, JSON.stringify(data, null, 2))
+    return res.status(200).json({message: 'Solicitud guardada correctamente.'});
+
+})
+
 // Ruta para crear una nueva reserva (pago/confirmación)
 router.post('/crearReserva', (req, res) => {
         const { persona, motivo, polideportivo, espacio, fechaReserva, horaInicio, horaFin, metodoPago, costo } = req.body;

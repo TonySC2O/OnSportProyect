@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Temporal-->
+<style> 
+    .container {
+        min-height: 591px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .bloque {
+        background: rgb(220, 255, 236);
+        padding: 24px;
+        width: 350px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        border-radius: 14px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+        font-weight: 600;
+    }
+
+    select, textarea {
+        padding: 8px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-family: inherit;
+    }
+
+    textarea {
+        min-height: 120px;   
+        resize: vertical;    
+    }
+
+    button {
+        margin-top: 8px;
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        background: #05686a;
+        color: white;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #013c35;
+    }
+
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Polideportivos y Usuarios</title>
+    <link rel="stylesheet" href="/CSS/style.css">
+</head>
+<body>
+    <header>
+        <div class="barraInicio">
+            <div class="barraInicioIzquierda">
+                <a href="home.html">
+                    <div class="logoimg">
+                        <img src="Images/On-Sport_logo.png" alt="Logo On-Sport" class="logo">
+                    </div>
+                </a>
+                <p class="titulo">Gestionar Polideportivos y Usuarios</p>
+            </div>
+            <div class="barraInicioDerecha">
+                <button id="registro">Registrarse</button>
+                <button id="iniciarSesion">Iniciar Sesión</button>
+                <button id="logout" style="display:none;">Cerrar Sesión</button>
+            </div> 
+        </div>
+    </header>
+
+    <div class="container">
+        <main>
+            <div class="bloque">
+                <label>Elegir opcion a modificar:</label>
+                <select id="opcion">
+                    <option value="Modificar Usuario">Modificar Usuario</option>
+                    <option value="Modificar Polideportivo">Modificar Polideportivo</option>
+                </select>
+                
+                <label>Descripción del cambio:</label>
+                <textarea id="descripcion" placeholder="Describa el cambio . . ."></textarea>
+
+                <button id="enviarBtn">Enviar</button>
+            </div>
+        </main>
+    </div>
+    <footer>
+        <div class="ficha-1">
+            <h2>ON-SPORT</h2>
+        </div>
+        <div class="ficha-2">
+            <p>Soporte</p>
+            <p>Preguntas Frecuentes</p>
+            <p>Terminos y condiciones</p>             
+            <p>Privacidad</p>      
+            <p>Cookies</p>               
+        </div>
+        <div class="ficha-3">
+            <h2>©2026 Todos los Derechos Reservados</h2>
+        </div>
+    </footer>
+
+    <script>
+        
+        const fechaActual = new Date().toISOString().split('T')[0]; //Obtiene fecha de hoy y hace formato yyyy-mm-dd
+
+        document.getElementById("enviarBtn").addEventListener('click', async () => { //try catch?
+            const adminUsername = localStorage.getItem('username');
+            const opcion = document.getElementById("opcion").value;
+            const descripcion = document.getElementById("descripcion").value;
+
+            if(!descripcion){
+                alert("Debe de rellenar el espacio de descripción.")
+                return;
+            }
+            const solicitudCambio = {
+                persona: adminUsername,
+                opcion: opcion,
+                descripcion: descripcion,
+                fecha: fechaActual
+            };
+
+            const res = await fetch('/api/gestionAdmin', {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(solicitudCambio)
+            });
+
+            const result = await res.json();
+
+            if(!res.ok){
+                alert(result.message)
+            }
+            else{
+                alert(result.message)
+                window.location.reload();
+            }
+
+            const rol=localStorage.getItem('role');
+            if(rol){//Si hay rol en localstorage, solo se muestra el cerrar sesion
+                document.getElementById('iniciarSesion').style.display='none';
+                document.getElementById('registro').style.display='none';
+                document.getElementById('logout').style.display='inline-block';
+            }
+            //Limpia el local.storage y devuelve a home
+            document.getElementById('logout').addEventListener('click', () => {
+                localStorage.clear();
+                window.location.href='home.html';
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>
