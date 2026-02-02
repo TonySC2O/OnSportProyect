@@ -72,7 +72,7 @@ router.get('/modificarReserva/reservas', (req, res) => {
     const ruta = path.join(__dirname, './data/data.json'); 
     const data = JSON.parse(fs.readFileSync(ruta, 'utf8')); //Lee el Json
 
-    //Cambiar metodo de busqueda al la seccion de datos del json correcta
+    
     const reservasFecha = data.reservas.filter(r =>   //Filtra reservas por la fecha seleccionada
         r.fechaReserva === fecha)
         .map(reserva => {       //Modifica los elementos de reserva manteniendo los anteriores
@@ -89,7 +89,6 @@ router.get('/modificarReserva/reservas', (req, res) => {
                 costo: reserva.costo,
                 metodoPago: reserva.metodoPago,
                 polideportivo: reserva.polideportivo,
-                espacio: reserva.espacio,
                 fechaReserva: reserva.fechaReserva,
                 horaInicio: reserva.horaInicio,
                 horaFin: reserva.horaFin,
@@ -104,10 +103,10 @@ router.post("/modificarReserva/modificar", (req, res) => {
     const tipoUso = req.body.tipoUso;
     const comprobante = req.body.comprobante;
     const polideportivo = req.body.polideportivo;
-    const espacio = req.body.espacio;
     const fechaReserva = req.body.fechaReserva;
     const horaInicio = req.body.horaInicio;
     const horaFin = req.body.horaFin;
+    const motivo = req.body.motivo;
 
     const ruta = path.join(__dirname, './data/data.json');
     const data = JSON.parse(fs.readFileSync(ruta, 'utf-8'));
@@ -128,7 +127,6 @@ router.post("/modificarReserva/modificar", (req, res) => {
 
         const reservasEspacioFecha = data.reservas.filter( //Obtener reservas del espacio en la fecha dada
             r => r.polideportivo === polideportivo &&
-                r.espacio === espacio &&
                 r.fechaReserva === fechaReserva &&
                 r.comprobante !== comprobante //Evitar reserva a cambiar
         );
@@ -148,10 +146,10 @@ router.post("/modificarReserva/modificar", (req, res) => {
         }
 
         reserva.polideportivo = polideportivo;
-        reserva.espacio = espacio;
         reserva.fechaReserva = fechaReserva;
         reserva.horaInicio = horaInicio;
         reserva.horaFin = horaFin;
+        reserva.motivo = motivo;
     }
     //eliminar
     else if(tipoUso === "eliminar"){

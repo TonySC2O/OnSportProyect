@@ -31,7 +31,8 @@
             <div class="opcionesInicio">
                 <button id="VerPolis">Ver polideportivos</button>
                 <button id="VerReservas">Ver reservas</button>
-                <button id="AccionesAdm">Opciones administrativas</button>
+                <button id="AccionAdm1">Modificar Reserva</button>
+                <button id="AccionAdm2">Gestion de Polideportivos y Usuarios</button>
                 <button id="soporte">Ayuda</button>
             </div>
             <div id="popUpSupport" class="modalSupport">
@@ -101,12 +102,11 @@
     document.getElementById('iniciarSesion').addEventListener('click', () => {
         window.location.href = 'login.html';
     });
-    document.getElementById('VerPolis').addEventListener('click', () => {
-        window.location.href = 'VerPolideportivo.html';
-    });
+    
     document.getElementById('VerReservas').addEventListener('click', () => {
         window.location.href = 'verReserva.html';
     });
+    
 
     // Support modal logic
     const soporteBtn = document.getElementById('soporte');
@@ -129,7 +129,20 @@
     //Hacer acciones de admin visibles si es admin
     const rol=localStorage.getItem('role');
     if(rol==='admin'){
-        document.getElementById('AccionesAdm').style.display='inline-block';
+        const btnAdmin1 = document.getElementById('AccionAdm1');
+        const btnAdmin2 = document.getElementById('AccionAdm2');
+
+        btnAdmin1.style.display = 'inline-block';
+        btnAdmin1.addEventListener('click', () => {
+            window.location.href = 'modificarReserva.html';
+        });
+
+        btnAdmin2.style.display = 'inline-block';
+        btnAdmin2.addEventListener('click', () => {
+            window.location.href = 'gestionAdmin.html';
+        })
+
+
     }//Mostrar boton de logout, esconbder login y registro si hay sesion iniciada(local.storege con rol)
     if(rol){//Si hay rol en localstorage, solo se muestra el cerrar sesion
         document.getElementById('iniciarSesion').style.display='none';

@@ -112,9 +112,18 @@
         font-size: 16px;
         
     }
+    .bloquesDerecha select {
+        width: 270px;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 16px;
+        border: 1px solid #000000;
+        background-color: white;
+    }
 
-    .inputHora input{
-        width: 106px;
+
+    .inputHora select{
+        width: 92px;
     }
 
     .botones button {
@@ -192,10 +201,6 @@
                                 <input id="telefono" type="text" placeholder="Número de Teléfono" readonly>
                             </div>
                             <div>
-                                <label>Motivo</label>
-                                <input id="motivo" type="text" placeholder="Motivo" readonly>
-                            </div>
-                            <div>
                                 <label>Coste de Reserva</label>
                                 <input id="coste" type="text" placeholder="Coste Total Reserva" readonly>
                             </div>
@@ -220,8 +225,8 @@
                                 </select>
                             </div>
                             <div>
-                                <label>Espacio</label>
-                                <input id="espacio" name="espacio" type="text" placeholder="Espacio deportivo">
+                                <label>Motivo</label>
+                                <input id="motivo" type="text" placeholder="Motivo">
                             </div>
                             <div>
                                 <label>Fecha de Reserva</label>
@@ -319,7 +324,6 @@
             document.getElementById("metodoPago").value = reserva.metodoPago;
 
             document.getElementById("polideportivo").value = reserva.polideportivo;
-            document.getElementById("espacio").value = reserva.espacio;
             document.getElementById("fecha").value = reserva.fechaReserva;
             document.getElementById("horaDesde").value = reserva.horaInicio;
             document.getElementById("horaHasta").value = reserva.horaFin;
@@ -372,10 +376,10 @@
                 tipoUso: tipoAccion,
                 comprobante: document.getElementById("comprobante").value, //Para buscar reserva especifica
                 polideportivo: document.getElementById("polideportivo").value,
-                espacio: document.getElementById("espacio").value,
                 fechaReserva: document.getElementById("fecha").value,
                 horaInicio: document.getElementById("horaDesde").value,
-                horaFin: document.getElementById("horaHasta").value
+                horaFin: document.getElementById("horaHasta").value,
+                motivo: document.getElementById("motivo").value
             };
 
             const res = await fetch("/api/modificarReserva/modificar", { 
@@ -418,6 +422,18 @@
         document.getElementById("modificarBtn").addEventListener("click", () => enviarAccion("modificar"));
         document.getElementById("eliminarBtn").addEventListener("click", () => enviarAccion("eliminar"));
 
+
+        const rol=localStorage.getItem('role');
+        if(rol){//Si hay rol en localstorage, solo se muestra el cerrar sesion
+            document.getElementById('iniciarSesion').style.display='none';
+            document.getElementById('registro').style.display='none';
+            document.getElementById('logout').style.display='inline-block';
+        }
+        //Limpia el local.storage y devuelve a home
+        document.getElementById('logout').addEventListener('click', () => {
+            localStorage.clear();
+            window.location.href='home.html';
+        });
     </script>
 
 </body>

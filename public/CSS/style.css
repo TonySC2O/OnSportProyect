@@ -171,8 +171,11 @@ top: 0;
         transform: scale(1.05);
         box-shadow: 0 6px 15px rgba(0,0,0,0.4);
     }
-    #AccionesAdm {/*Ocultar boton de acciones de admin, solo visible si ingresa un admin*/
+    #AccionAdm1 {/*Ocultar boton de acciones de admin, solo visible si ingresa un admin*/
         display: none;/*Cambiar display en logica*/
+    }
+    #AccionAdm2 {
+        display: none;
     }
     #soporte {
         position:fixed;
