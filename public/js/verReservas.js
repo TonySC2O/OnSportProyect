@@ -1,5 +1,14 @@
 //Funcionalidad para ver las reservas realizadas por el usuario logged in
 
+// ===== FUNCIONES DE CONVERSIÓN HORA <-> SEGUNDOS =====
+// Convierte segundos a HH:MM (ej: 23400 -> "06:30")
+function segundosAHora(segundos) {
+    segundos = parseInt(segundos);
+    const hh = Math.floor(segundos / 3600);
+    const mm = Math.floor((segundos % 3600) / 60);
+    return `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('verReservas.js cargado');
 
@@ -47,11 +56,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             div.style.backgroundColor = '#eaf4fb';
             div.style.border = '2px solid #052e6b';
 
+            // Convertir horas de segundos a HH:MM para mostrar
+            const horaInicio = segundosAHora(r.horaInicio);
+            const horaFin = segundosAHora(r.horaFin);
+
             div.innerHTML = `
                 <p><b>Polideportivo:</b> ${r.polideportivo}</p>
-                <p><b>Espacio:</b> ${r.espacio}</p>
                 <p><b>Fecha:</b> ${r.fechaReserva}</p>
-                <p><b>Horario:</b> ${r.horaInicio} - ${r.horaFin}</p>
+                <p><b>Horario:</b> ${horaInicio} - ${horaFin}</p>
                 <p><b>Motivo:</b> ${r.motivo}</p>
                 <p><b>Costo:</b> ₡${r.costo}</p>
                 <p><b>Método de pago:</b> ${r.metodoPago}</p>

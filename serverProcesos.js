@@ -5,6 +5,20 @@ const router = express.Router();
 const fs = require('fs');
 const path = require('path');
 
+// ===== FUNCIONES DE CONVERSIÓN HORA <-> SEGUNDOS =====
+// Convierte HH:MM a segundos (ej: "06:30" -> 23400)
+const horaASegundos = (horaStr) => {
+    const [hh, mm] = horaStr.split(':').map(x => parseInt(x, 10));
+    return hh * 3600 + (mm || 0) * 60;
+};
+
+// Convierte segundos a HH:MM (ej: 23400 -> "06:30")
+const segundosAHora = (segundos) => {
+    const hh = Math.floor(segundos / 3600);
+    const mm = Math.floor((segundos % 3600) / 60);
+    return `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
+};
+
 //Ruta para registrar usuarios
 const datapath=path.join(__dirname,'./data/data.json');
 router.post('/register', (req, res) => {
@@ -46,6 +60,12 @@ router.post('/login',(req,res) =>{
         });
     }
     res.status(401).json({message:'El usuario ingredado no existe o la contraseña es incorrecta'});
+});
+
+//Ruta para obtener todos los polideportivos
+router.get('/polideportivos',(req,res)=>{
+    const data=JSON.parse(fs.readFileSync(datapath,'utf8'));
+    res.status(200).json({polideportivos:data.polideportivos});
 });
 
 //Ruta para el admin vea todas las reservas
@@ -115,45 +135,71 @@ router.post("/modificarReserva/modificar", (req, res) => {
     if (!reserva) {
         return res.status(404).json({ message: "Reserva no encontrada"});
     }
-    //editar
+
+    // Editar reserva
     if(tipoUso === "modificar"){
+        // Convertir horas a números enteros (segundos)
+        const inicioSeg = parseInt(horaInicio);
+        const finSeg = parseInt(horaFin);
 
-        const inicio = parseInt(horaInicio.split(':')[0], 10);
-        const fin = parseInt(horaFin.split(':')[0], 10);
-
-        if(inicio >= fin){
-            return res.status(400).json({message: "Hora de inicio no puede ser mayor o igual que hora de fin"})
+        if (isNaN(inicioSeg) || isNaN(finSeg)) {
+            return res.status(400).json({ message: 'Horas deben ser números válidos (en segundos)' });
         }
 
-        const reservasEspacioFecha = data.reservas.filter( //Obtener reservas del espacio en la fecha dada
-            r => r.polideportivo === polideportivo &&
-                r.fechaReserva === fechaReserva &&
-                r.comprobante !== comprobante //Evitar reserva a cambiar
-        );
+        // Validación 1: Inicio < Fin
+        if(inicioSeg >= finSeg){
+            return res.status(400).json({message: "Hora de inicio debe ser menor que hora de fin"})
+        }
 
-        const choqueHorario = reservasEspacioFecha.some( //Si hay una reserva con choque de horario, return True
-            r => { //Funcion para transformar de string a int las horas, debido a errores en validaciones de
-                
+        // Validación 2: Polideportivo existe
+        const polidep = data.polideportivos.find(p => p.titulo === polideportivo);
+        if (!polidep) {
+            return res.status(400).json({ message: 'Polideportivo no encontrado' });
+        }
 
-                const inicioReserva = parseInt(r.horaInicio.split(':')[0], 10);
-                const finReserva = parseInt(r.horaFin.split(':')[0], 10);
+        // Validación 3: Día disponible
+        const d = new Date(fechaReserva + 'T00:00:00');
+        const diasSemana = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+        const diaSemana = diasSemana[d.getDay()];
+        const horarioDia = polidep.horario[diaSemana];
 
-                return inicio < finReserva && fin > inicioReserva
+        if (horarioDia === null) {
+            return res.status(400).json({ message: 'El polideportivo no está disponible ese día' });
+        }
+
+        // Validación 4: Horas dentro del horario
+        if (inicioSeg < horarioDia.inicio || finSeg > horarioDia.fin) {
+            const horaApe = segundosAHora(horarioDia.inicio);
+            const horaCie = segundosAHora(horarioDia.fin);
+            return res.status(400).json({ message: `Las horas deben estar entre ${horaApe} y ${horaCie}` });
+        }
+
+        // Validación 5: Sin conflictos con otras reservas
+        const tieneConflicto = data.reservas.some(r => {
+            if (r.comprobante === comprobante) return false; // No comparar consigo misma
+            if (r.polideportivo !== polideportivo || r.fechaReserva !== fechaReserva) return false;
+            
+            const inicioExistente = parseInt(r.horaInicio);
+            const finExistente = parseInt(r.horaFin);
+            
+            // Solapamiento
+            return inicioSeg < finExistente && finSeg > inicioExistente;
         });
 
-        if(choqueHorario){ 
-            return res.status(409).json({message:"Horario no disponible"})
+        if(tieneConflicto){ 
+            return res.status(409).json({message: "Horario no disponible - hay otra reserva en ese horario"})
         }
 
+        // Actualizar reserva
         reserva.polideportivo = polideportivo;
         reserva.fechaReserva = fechaReserva;
-        reserva.horaInicio = horaInicio;
-        reserva.horaFin = horaFin;
+        reserva.horaInicio = inicioSeg;
+        reserva.horaFin = finSeg;
         reserva.motivo = motivo;
     }
-    //eliminar
+    // Eliminar
     else if(tipoUso === "eliminar"){
-        data.reservas.splice(reserva, 1);
+        data.reservas.splice(data.reservas.indexOf(reserva), 1);
     }
 
     //Guardar cambios
@@ -191,40 +237,76 @@ router.post('/gestionAdmin', (req, res) => {
 
 // Ruta para crear una nueva reserva (pago/confirmación)
 router.post('/crearReserva', (req, res) => {
-        const { persona, motivo, polideportivo, espacio, fechaReserva, horaInicio, horaFin, metodoPago, costo } = req.body;
+        const { persona, motivo, polideportivo, fechaReserva, horaInicio, horaFin, metodoPago, costo } = req.body;
         const ruta = path.join(__dirname, './data/data.json');
         const data = JSON.parse(fs.readFileSync(ruta, 'utf-8'));
 
         // Validaciones básicas
-        if (!persona || !polideportivo || !espacio || !fechaReserva || !horaInicio || !horaFin) {
+        if (!persona || !polideportivo || !fechaReserva || horaInicio === undefined || horaFin === undefined) {
             return res.status(400).json({ message: 'Faltan datos requeridos para crear la reserva' });
         }
 
-        // Comprobar conflicto de horario
-        const reservasEspacioFecha = data.reservas.filter(
-            r => r.polideportivo === polideportivo && r.espacio === espacio && r.fechaReserva === fechaReserva
-        );
+        // Convertir horas (en segundos) a números enteros
+        const inicioSeg = parseInt(horaInicio);
+        const finSeg = parseInt(horaFin);
 
-        const inicio = parseInt(horaInicio.split(':')[0], 10);
-        const fin = parseInt(horaFin.split(':')[0], 10);
-
-        const choque = reservasEspacioFecha.some(r => {
-            const inicioR = parseInt(r.horaInicio.split(':')[0], 10);
-            const finR = parseInt(r.horaFin.split(':')[0], 10);
-            return inicio < finR && fin > inicioR;
-        });
-
-        if (choque) {
-            return res.status(409).json({ message: 'Horario no disponible para la reserva' });
+        if (isNaN(inicioSeg) || isNaN(finSeg)) {
+            return res.status(400).json({ message: 'Horas deben ser números válidos (en segundos)' });
         }
 
-        // Generar comprobante / código de reserva
-        const comprobante = 'RE' + Date.now();
+        // Validación 1: Inicio < Fin
+        if (inicioSeg >= finSeg) {
+            return res.status(400).json({ message: 'Hora de inicio debe ser menor que hora de fin' });
+        }
 
-        // Calcular costo si no viene (ejemplo: 2000 por hora)
+        // Validación 2: Polideportivo existe
+        const polidep = data.polideportivos.find(p => p.titulo === polideportivo);
+        if (!polidep) {
+            return res.status(400).json({ message: 'Polideportivo no existe' });
+        }
+
+        // Validación 3: Día disponible
+        const d = new Date(fechaReserva + 'T00:00:00');
+        const diasSemana = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+        const diaSemana = diasSemana[d.getDay()];
+        const horarioDia = polidep.horario[diaSemana];
+        
+        if (horarioDia === null) {
+            return res.status(400).json({ message: 'El polideportivo no está disponible ese día' });
+        }
+
+        // Validación 4: Horas dentro del horario del polideportivo
+        if (inicioSeg < horarioDia.inicio || finSeg > horarioDia.fin) {
+            const horaApe = segundosAHora(horarioDia.inicio);
+            const horaCie = segundosAHora(horarioDia.fin);
+            return res.status(400).json({ message: `Las horas deben estar entre ${horaApe} y ${horaCie}` });
+        }
+
+        // Validación 5: Sin conflictos con otras reservas
+        const tieneConflicto = data.reservas.some(r => {
+            if (r.polideportivo !== polideportivo || r.fechaReserva !== fechaReserva) return false;
+            const inicioExistente = parseInt(r.horaInicio);
+            const finExistente = parseInt(r.horaFin);
+            // Solapamiento: nuevo_inicio < existente_fin AND nuevo_fin > existente_inicio
+            return inicioSeg < finExistente && finSeg > inicioExistente;
+        });
+
+        if (tieneConflicto) {
+            return res.status(409).json({ message: 'Horario no disponible - hay otra reserva en ese horario' });
+        }
+
+        // Generar comprobante
+        let maxComprobante = 0;
+        data.reservas.forEach((r) => {
+            const num = parseInt(r.comprobante.split("-")[1], 10);
+            if (num > maxComprobante) maxComprobante = num;
+        });
+        const nuevoComprobante = "RES-" + (maxComprobante + 1);
+
+        // Calcular costo si no viene
         let costoFinal = costo;
         if (!costoFinal) {
-            const horas = Math.max(1, fin - inicio);
+            const horas = Math.max(1, Math.ceil((finSeg - inicioSeg) / 3600));
             costoFinal = String(2000 * horas);
         }
 
@@ -234,35 +316,20 @@ router.post('/crearReserva', (req, res) => {
             costo: String(costoFinal),
             metodoPago: metodoPago || 'Pendiente',
             polideportivo,
-            espacio,
             fechaReserva,
-            horaInicio,
-            horaFin,
-            comprobante
+            horaInicio: inicioSeg,
+            horaFin: finSeg,
+            comprobante: nuevoComprobante
         };
 
         data.reservas.push(nuevaReserva);
         fs.writeFileSync(ruta, JSON.stringify(data, null, 2));
 
-        // Buscar datos de la persona para la factura
-        const infoUser = data.users.find(u => u.username === persona) || data.admins.find(a => a.username === persona) || { nombre: persona };
-
-        const factura = {
-            codigoReserva: comprobante,
-            persona: infoUser.nombre || persona,
-            polideportivo: polideportivo,
-            espacio: espacio,
-            motivo: nuevaReserva.motivo,
-            fechaReserva: fechaReserva,
-            horaInicio: horaInicio,
-            horaFin: horaFin,
-            pagoReserva: nuevaReserva.costo,
-            pagoTotal: nuevaReserva.costo,
-            metodoPago: nuevaReserva.metodoPago,
-            estadoReserva: 'Sin Pagar'
-        };
-
-        res.status(201).json({ message: 'Reserva creada', reserva: nuevaReserva, factura });
+        res.status(201).json({
+            message: 'Reserva creada correctamente',
+            comprobante: nuevoComprobante,
+            costo: costoFinal
+        });
     });
 
 module.exports = router;

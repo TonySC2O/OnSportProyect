@@ -173,12 +173,10 @@
             // Mostrar modal de sesión requerida
             document.getElementById('modalSesion').style.display = 'block';
         } else {
-            // Guardar datos del espacio en localStorage antes de ir a realizar reserva
-            const titulo = document.getElementById('titulo').textContent || 'Espacio Deportivo';
-            const polideportivo = 'Polideportivo'; // Obtener del elemento
+            // Guardar datos del polideportivo en localStorage antes de ir a realizar reserva
+            const titulo = document.getElementById('titulo').textContent || 'Polideportivo';
             
-            localStorage.setItem('polideportivo', polideportivo);
-            localStorage.setItem('espacio', titulo);
+            localStorage.setItem('polideportivo', titulo);
             
             // Ir a realizar reserva
             window.location.href = 'realizarReserva.html';

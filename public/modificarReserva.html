@@ -215,13 +215,14 @@
                             <div>
                                 <label>Polideportivo</label>
                                 <select id="polideportivo" name="polideportivo">
-                                    <option>CODEA - Futbol</option>
-                                    <option>BN Arena</option>
-                                    <option>Polideportivo de Cartago</option>
-                                    <option>Estadio Ernesto Rohrmoser</option>
-                                    <option>CODEA - Basquetball</option>
-                                    <option>Palacio de losd deportes</option>
-                                    <option>Estadio "Fello" Meza</option>
+                                    <option value="">Seleccionar polideportivo</option>
+                                    <option value="CODEA - Cancha de Fútbol">CODEA - Cancha de Fútbol</option>
+                                    <option value="BN Arena">BN Arena</option>
+                                    <option value="Polideportivo de Catago">Polideportivo de Catago</option>
+                                    <option value="Estadio Ernesto Rohrmoser">Estadio Ernesto Rohrmoser</option>
+                                    <option value="CODEA - Multiuso">CODEA - Multiuso</option>
+                                    <option value="Palacio de los deportes">Palacio de los deportes</option>
+                                    <option value="Estadio José Rafael 'Fello' Meza Ivancovich">Estadio José Rafael 'Fello' Meza Ivancovich</option>
                                 </select>
                             </div>
                             <div>
@@ -233,46 +234,62 @@
                                 <input id="fecha" name="fechaReserva" type="date" placeholder="Fecha Reserva">
                             </div>
                             <div class="inputHora">
-                                <label for="horaDesde">De:</label>     <!--No encontre otra forma de que solo se puediera seleccionar por horas exactas...-->
-                                <select id="horaDesde" name="horaInicio">                 <!--Otra opcion seria validar el minuto y solo permitir minuto 0-->
-                                    <option>06:00</option>
-                                    <option>07:00</option>
-                                    <option>08:00</option>
-                                    <option>09:00</option>
-                                    <option>10:00</option>
-                                    <option>11:00</option>
-                                    <option>12:00</option>
-                                    <option>13:00</option>
-                                    <option>14:00</option>
-                                    <option>15:00</option>
-                                    <option>16:00</option>
-                                    <option>17:00</option>
-                                    <option>18:00</option>
-                                    <option>19:00</option>
-                                    <option>20:00</option>
-                                    <option>21:00</option>
-                                    <option>22:00</option>
+                                <label for="horaDesde">De:</label>
+                                <select id="horaDesde" name="horaInicio">
+                                    <option value="">Seleccionar hora</option>
+                                    <option value="0:00">0:00</option>
+                                    <option value="1:00">1:00</option>
+                                    <option value="2:00">2:00</option>
+                                    <option value="3:00">3:00</option>
+                                    <option value="4:00">4:00</option>
+                                    <option value="5:00">5:00</option>
+                                    <option value="6:00">6:00</option>
+                                    <option value="7:00">7:00</option>
+                                    <option value="8:00">8:00</option>
+                                    <option value="9:00">9:00</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="18:00">18:00</option>
+                                    <option value="19:00">19:00</option>
+                                    <option value="20:00">20:00</option>
+                                    <option value="21:00">21:00</option>
+                                    <option value="22:00">22:00</option>
+                                    <option value="23:00">23:00</option>
                                 </select>
 
                                 <label for="horaHasta">a:</label>
                                 <select id="horaHasta" name="horaFin">
-                                    <option>06:00</option>
-                                    <option>07:00</option>
-                                    <option>08:00</option>
-                                    <option>09:00</option>
-                                    <option>10:00</option>
-                                    <option>11:00</option>
-                                    <option>12:00</option>
-                                    <option>13:00</option>
-                                    <option>14:00</option>
-                                    <option>15:00</option>
-                                    <option>16:00</option>
-                                    <option>17:00</option>
-                                    <option>18:00</option>
-                                    <option>19:00</option>
-                                    <option>20:00</option>
-                                    <option>21:00</option>
-                                    <option>22:00</option>
+                                    <option value="">Seleccionar hora</option>
+                                    <option value="0:00">0:00</option>
+                                    <option value="1:00">1:00</option>
+                                    <option value="2:00">2:00</option>
+                                    <option value="3:00">3:00</option>
+                                    <option value="4:00">4:00</option>
+                                    <option value="5:00">5:00</option>
+                                    <option value="6:00">6:00</option>
+                                    <option value="7:00">7:00</option>
+                                    <option value="8:00">8:00</option>
+                                    <option value="9:00">9:00</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="18:00">18:00</option>
+                                    <option value="19:00">19:00</option>
+                                    <option value="20:00">20:00</option>
+                                    <option value="21:00">21:00</option>
+                                    <option value="22:00">22:00</option>
+                                    <option value="23:00">23:00</option>
                                 </select>
                             </div>
 
@@ -307,134 +324,6 @@
         </div>
     </footer>
 
-    <script>
-        const adminUsername = localStorage.getItem('username');
-
-        if(adminUsername){
-            document.getElementById('nombreAdmin').textContent = adminUsername;
-        }
-
-        function seleccionarReserva(reserva){
-            
-            document.getElementById("nombre").value = reserva.nombre;
-            document.getElementById("email").value = reserva.email;
-            document.getElementById("telefono").value = reserva.telefono;
-            document.getElementById("motivo").value = reserva.motivo;
-            document.getElementById("coste").value = reserva.costo;
-            document.getElementById("metodoPago").value = reserva.metodoPago;
-
-            document.getElementById("polideportivo").value = reserva.polideportivo;
-            document.getElementById("fecha").value = reserva.fechaReserva;
-            document.getElementById("horaDesde").value = reserva.horaInicio;
-            document.getElementById("horaHasta").value = reserva.horaFin;
-            document.getElementById("comprobante").value = reserva.comprobante
-        }
-
-        //Funcion para obtener las reservas de una fecha dada y agregarlas en vista
-        function obtenerReservas(fecha) {
-            console.log(fecha)
-            document.getElementById("fechaHeader").textContent = fecha
-            fetch(`/api/modificarReserva/reservas?fecha=${fecha}`) 
-            .then(res => res.json())
-            .then(data => { //En data estan las reservas de dicho dia
-
-                const lista = document.getElementById('listaReservas'); //Se van a agregar en el div de listaReservas
-                lista.innerHTML = ''; //Se limpia el contenedor
-
-                if( !Array.isArray(data)||data.length === 0){ //Valida en caso de no haber reservas ese dia
-                    lista.textContent = 'No hay reservas para este dia';
-                    return;
-                }
-                
-                data.forEach(reserva => {
-                    const item = document.createElement('div');
-                    item.classList.add('reserva'); //Clase de CSS para ver la reserva en div
-
-                    item.textContent = `${reserva.comprobante}  | ${reserva.horaInicio} a ${reserva.horaFin}`;
-                    item.addEventListener('click', () => {
-                        seleccionarReserva(reserva);
-                    })
-
-                    lista.appendChild(item);
-                });
-            });
-        }
-
-        async function enviarAccion(tipoAccion) {
-            let mensaje;  //Mensaje de confirmacion para realizar accion
-
-            if(tipoAccion === "eliminar"){
-                mensaje = "Esta seguro de elimnar esta reserva?"
-            }
-            else if(tipoAccion ==="modificar"){
-                mensaje = "Esta seguro de modificar esta reserva?"
-            }
-
-            if (!confirm(mensaje)) return;
-
-            const data = {      //Datos a modificar
-                tipoUso: tipoAccion,
-                comprobante: document.getElementById("comprobante").value, //Para buscar reserva especifica
-                polideportivo: document.getElementById("polideportivo").value,
-                fechaReserva: document.getElementById("fecha").value,
-                horaInicio: document.getElementById("horaDesde").value,
-                horaFin: document.getElementById("horaHasta").value,
-                motivo: document.getElementById("motivo").value
-            };
-
-            const res = await fetch("/api/modificarReserva/modificar", { 
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(data)
-            });
-
-            const result = await res.json();
-
-            if(!res.ok){
-                alert(result.message)
-            }
-            else{
-                alert(result.message)
-                window.location.reload();
-            }
-            
-        }
-        var picker = new Pikaday({
-        //el calendario siempre se va a mostrar
-        field: document.getElementById('calendario'), 
-        bound: false, 
-        container: document.getElementById('calendario'),
-
-        firstDay: 7, 
-        format: 'YYYY-MM-DD',
-        showDaysInNextAndPreviousMonths: true,
-
-        onSelect: function(date) {
-            const fecha = picker.toString();
-
-            obtenerReservas(fecha);
-        }
-        });
-
-        const fechaActual = new Date().toISOString().split('T')[0]; //Obtiene fecha de hoy y hace formato yyyy-mm-dd
-        obtenerReservas(fechaActual);
-
-        document.getElementById("modificarBtn").addEventListener("click", () => enviarAccion("modificar"));
-        document.getElementById("eliminarBtn").addEventListener("click", () => enviarAccion("eliminar"));
-
-
-        const rol=localStorage.getItem('role');
-        if(rol){//Si hay rol en localstorage, solo se muestra el cerrar sesion
-            document.getElementById('iniciarSesion').style.display='none';
-            document.getElementById('registro').style.display='none';
-            document.getElementById('logout').style.display='inline-block';
-        }
-        //Limpia el local.storage y devuelve a home
-        document.getElementById('logout').addEventListener('click', () => {
-            localStorage.clear();
-            window.location.href='home.html';
-        });
-    </script>
-
+    <script src="/js/modificarReserva.js"></script>
 </body>
 </html>

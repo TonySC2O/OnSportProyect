@@ -53,61 +53,257 @@
   ],
   "reservas": [
     {
-      "persona": "lira4k",
-      "motivo": "Practicar tennis",
-      "costo": "15000",
-      "metodoPago": "Tarjeta",
-      "polideportivo": "CODEA - Futbol",
-      "fechaReserva": "2026-02-01",
-      "horaInicio": "11:00",
-      "horaFin": "12:00",
-      "comprobante": "RC-001"
-    },
-    {
-      "persona": "Mangu26",
-      "motivo": "Campeonato Regional",
-      "costo": "10000",
-      "metodoPago": "Efectivo",
-      "polideportivo": "Polideportivo de Cartago",
-      "fechaReserva": "2026-02-02",
-      "horaInicio": "11:00",
-      "horaFin": "13:00",
-      "comprobante": "RC-002"
-    },
-    {
-      "persona": "Mangu26",
-      "motivo": "Choque",
-      "costo": "10000",
-      "metodoPago": "Efectivo",
-      "polideportivo": "CODEA - Futbol",
-      "fechaReserva": "2026-02-02",
-      "horaInicio": "12:00",
-      "horaFin": "14:00",
-      "comprobante": "RC-003"
-    },
-    {
       "persona": "tonyAdm",
-      "motivo": "reserva",
-      "costo": "2000",
-      "metodoPago": "Sinpe",
-      "polideportivo": "Polideportivo",
-      "fechaReserva": "2026-02-01",
-      "horaInicio": "15:00",
-      "horaFin": "16:00",
-      "comprobante": "RE1769939067892"
-    },
-    {
-      "persona": "tonyAdm",
-      "motivo": "reserva",
-      "costo": "4000",
+      "motivo": "Motivo",
+      "costo": "14000",
       "metodoPago": "Paypal",
-      "polideportivo": "Polideportivo",
-      "fechaReserva": "2026-02-03",
-      "horaInicio": "16:00",
-      "horaFin": "18:00",
-      "comprobante": "RE1769939273365"
+      "polideportivo": "CODEA - Cancha de Fútbol",
+      "fechaReserva": "2026-02-02",
+      "horaInicio": 21600,
+      "horaFin": 28800,
+      "comprobante": "RES-1"
+    },
+    {
+      "persona": "tonyAdm",
+      "motivo": "Motivo",
+      "costo": "16000",
+      "metodoPago": "Sinpe",
+      "polideportivo": "Polideportivo de Catago",
+      "fechaReserva": "2026-02-02",
+      "horaInicio": 21600,
+      "horaFin": 25200,
+      "comprobante": "RES-2"
+    },
+    {
+      "persona": "lira4k",
+      "motivo": "motivo",
+      "costo": "28000",
+      "metodoPago": "Efectivo",
+      "polideportivo": "CODEA - Cancha de Fútbol",
+      "fechaReserva": "2026-02-02",
+      "horaInicio": 28800,
+      "horaFin": 43200,
+      "comprobante": "RES-3"
     }
   ],
   "solicitudesAdmin": [],
-  "polideportivos": []
+  "polideportivos": [
+    {
+      "Imagen": "Images/Alajuela.jpg",
+      "titulo": "CODEA - Cancha de Fútbol",
+      "descripcion": "La cancha principal de fútbol del CODEA cuenta con las medidas internacionales FIFA para la práctica del fútbol, cuenta además con camerinos, 250 lux de iluminación, pista y campo de atletismo.",
+      "precio": 7000,
+      "estado": "Disponible",
+      "horario": {
+        "Lunes": {
+          "inicio": 21600,
+          "fin": 72000
+        },
+        "Martes": {
+          "inicio": 21600,
+          "fin": 72000
+        },
+        "Miércoles": {
+          "inicio": 21600,
+          "fin": 72000
+        },
+        "Jueves": {
+          "inicio": 21600,
+          "fin": 72000
+        },
+        "Viernes": {
+          "inicio": 21600,
+          "fin": 72000
+        },
+        "Sábado": null,
+        "Domingo": null
+      }
+    },
+    {
+      "Imagen": "Images/SanJose.jpg",
+      "titulo": "BN Arena",
+      "descripcion": "Este complejo deportivo multiusos que a albergado varios juegos centroamericanos y del caribe, cuenta con el espacio requerido para el fútbol, basquetbol, volleyball y atletismo.",
+      "precio": 20000,
+      "estado": "No disponible",
+      "horario": {
+        "Lunes": {
+          "inicio": 28800,
+          "fin": 72000
+        },
+        "Martes": {
+          "inicio": 28800,
+          "fin": 72000
+        },
+        "Miércoles": {
+          "inicio": 28800,
+          "fin": 72000
+        },
+        "Jueves": {
+          "inicio": 28800,
+          "fin": 72000
+        },
+        "Viernes": {
+          "inicio": 28800,
+          "fin": 72000
+        },
+        "Sábado": null,
+        "Domingo": null
+      }
+    },
+    {
+      "Imagen": "Images/Cartago.jpg",
+      "titulo": "Polideportivo de Catago",
+      "descripcion": "El polideportivo de Cartago cuenta con canchas para la práctica de baquetbol, volleyball, además de iluminación.",
+      "precio": 16000,
+      "estado": "Disponible",
+      "horario": {
+        "Lunes": {
+          "inicio": 21600,
+          "fin": 79200
+        },
+        "Martes": {
+          "inicio": 21600,
+          "fin": 79200
+        },
+        "Miércoles": {
+          "inicio": 21600,
+          "fin": 79200
+        },
+        "Jueves": {
+          "inicio": 21600,
+          "fin": 79200
+        },
+        "Viernes": {
+          "inicio": 21600,
+          "fin": 79200
+        },
+        "Sábado": {
+          "inicio": 21600,
+          "fin": 57600
+        },
+        "Domingo": {
+          "inicio": 21600,
+          "fin": 79200
+        }
+      }
+    },
+    {
+      "Imagen": "Images/Pavas.jpg",
+      "titulo": "Estadio Ernesto Rohrmoser",
+      "descripcion": "Complejo deportivo utilizado en el fútbol de primera división, sede del equipo Sporting F.C., cuenta con camerinos, iluminación y medidas reglamentarias para la práctica del fútbol.",
+      "precio": 25000,
+      "estado": "Disponible",
+      "horario": {
+        "Lunes": {
+          "inicio": 21600,
+          "fin": 79200
+        },
+        "Martes": {
+          "inicio": 21600,
+          "fin": 79200
+        },
+        "Miércoles": null,
+        "Jueves": null,
+        "Viernes": null,
+        "Sábado": null,
+        "Domingo": {
+          "inicio": 21600,
+          "fin": 79200
+        }
+      }
+    },
+    {
+      "Imagen": "Images/Codea.jpg",
+      "titulo": "CODEA - Multiuso",
+      "descripcion": "La cancha multiusos del CODEA permite la práctica de baquetbol y volleyball, cuenta con iluminación y camerinos.",
+      "precio": 14000,
+      "estado": "Disponible",
+      "horario": {
+        "Lunes": {
+          "inicio": 21600,
+          "fin": 72000
+        },
+        "Martes": {
+          "inicio": 21600,
+          "fin": 72000
+        },
+        "Miércoles": {
+          "inicio": 21600,
+          "fin": 72000
+        },
+        "Jueves": {
+          "inicio": 21600,
+          "fin": 72000
+        },
+        "Viernes": {
+          "inicio": 21600,
+          "fin": 72000
+        },
+        "Sábado": null,
+        "Domingo": null
+      }
+    },
+    {
+      "Imagen": "Images/Heredia.jpg",
+      "titulo": "Palacio de los deportes",
+      "descripcion": "El Palacio de los Deportes es un pabellón deportivo con capacidad para 7500 personas, la arena es escenario habitual de eventos locales, tales como partidos deportivos, conciertos y ferias comerciales.",
+      "precio": 40000,
+      "estado": "Disponible",
+      "horario": {
+        "Lunes": {
+          "inicio": 18000,
+          "fin": 75600
+        },
+        "Martes": {
+          "inicio": 18000,
+          "fin": 75600
+        },
+        "Miércoles": {
+          "inicio": 18000,
+          "fin": 75600
+        },
+        "Jueves": {
+          "inicio": 18000,
+          "fin": 75600
+        },
+        "Viernes": {
+          "inicio": 18000,
+          "fin": 75600
+        },
+        "Sábado": {
+          "inicio": 25200,
+          "fin": 57600
+        },
+        "Domingo": {
+          "inicio": 25200,
+          "fin": 57600
+        }
+      }
+    },
+    {
+      "Imagen": "Images/Meza.jpg",
+      "titulo": "Estadio José Rafael 'Fello' Meza Ivancovich",
+      "descripcion": "Complejo deportivo utilizado en el fútbol de primera división, sede del equipo C.S.Cartagines, cuenta con camerinos, iluminación y cuenta con las medidas internacionales FIFA para la práctica del fútbol.",
+      "precio": 32000,
+      "estado": "No disponible",
+      "horario": {
+        "Lunes": {
+          "inicio": 21600,
+          "fin": 79200
+        },
+        "Martes": {
+          "inicio": 21600,
+          "fin": 79200
+        },
+        "Miércoles": null,
+        "Jueves": null,
+        "Viernes": null,
+        "Sábado": null,
+        "Domingo": {
+          "inicio": 21600,
+          "fin": 79200
+        }
+      }
+    }
+  ]
 }

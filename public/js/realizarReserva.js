@@ -2,9 +2,22 @@
 let fechaSeleccionada = new Date();
 let mesActual = new Date();
 let polideportivo = '';
-let espacio = '';
 let reservasDelDia = [];
 let diasConReservas = {}; // Para guardar qué días tienen reservas
+
+// ===== FUNCIONES DE CONVERSIÓN HORA <-> SEGUNDOS =====
+// Convierte HH:MM a segundos (ej: "06:30" -> 23400)
+function horaASegundos(horaStr) {
+    const [hh, mm] = horaStr.split(':').map(x => parseInt(x, 10));
+    return hh * 3600 + (mm || 0) * 60;
+}
+
+// Convierte segundos a HH:MM (ej: 23400 -> "06:30")
+function segundosAHora(segundos) {
+    const hh = Math.floor(segundos / 3600);
+    const mm = Math.floor((segundos % 3600) / 60);
+    return `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
+}
 
 // Inicializar
 document.addEventListener('DOMContentLoaded', async () => {
@@ -18,20 +31,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 // Cargar datos del localStorage
 function cargarDatos() {
     const polideportivo_element = document.getElementById('polideportivo');
-    const espacio_element = document.getElementById('espacio');
     
     // Cargar desde localStorage
     const polideportivoNombre = localStorage.getItem('polideportivo') || localStorage.getItem('polideportivoNombre') || '';
-    const espacioNombre = localStorage.getItem('espacio') || localStorage.getItem('espacioNombre') || '';
     
     if (polideportivoNombre) {
         polideportivo = polideportivoNombre;
         polideportivo_element.value = polideportivoNombre;
-    }
-    
-    if (espacioNombre) {
-        espacio = espacioNombre;
-        espacio_element.value = espacioNombre;
     }
 }
 
@@ -109,19 +115,18 @@ function generarCalendario() {
         divDia.textContent = dia;
         
         const diaFormato = String(dia).padStart(2, '0');
-        
-        // Marcar días con reservas
-        if (diasConReservas[diaFormato]) {
-            divDia.classList.add('conReserva');
-        }
-        
         const fechaDia = new Date(año, mes, dia);
 
-        // Marcar día actual
+        // Marcar día actual (primero, para que tenga prioridad visual)
         const hoy = new Date();
         hoy.setHours(0, 0, 0, 0);
         if (fechaDia.getTime() === hoy.getTime()) {
             divDia.classList.add('hoy');
+        }
+        
+        // Marcar días con reservas (después, si no es hoy)
+        if (diasConReservas[diaFormato] && !divDia.classList.contains('hoy')) {
+            divDia.classList.add('conReserva');
         }
 
         // Marcar día seleccionado
@@ -207,10 +212,14 @@ function mostrarReservasEnPantalla(reservas) {
     
     let html = '';
     reservas.forEach(reserva => {
+        // Convertir segundos a HH:MM para mostrar
+        const horaInicio = segundosAHora(reserva.horaInicio);
+        const horaFin = segundosAHora(reserva.horaFin);
+        
         html += `
             <div class="reservaItem">
-                <strong>${reserva.horaInicio} a ${reserva.horaFin}</strong><br>
-                Espacio: ${reserva.espacio}<br>
+                <strong>${horaInicio} a ${horaFin}</strong><br>
+                Polideportivo: ${reserva.polideportivo || ''}<br>
                 Usuario: ${reserva.nombre}
             </div>
         `;
@@ -268,18 +277,18 @@ async function realizarReserva() {
     const horaInicio = document.getElementById('horaInicio').value;
     const horaFin = document.getElementById('horaFin').value;
     
-    // Validaciones
+    // Validaciones básicas
     if (!usuario) {
         alert('Debes iniciar sesión para realizar una reserva');
         window.location.href = 'login.html';
         return;
     }
     
+    // Obtener polideportivo
     const polideportivoVal = document.getElementById('polideportivo').value;
-    const espacioVal = document.getElementById('espacio').value;
-    
-    if (!polideportivoVal || !espacioVal) {
-        alert('Debes seleccionar un polideportivo y un espacio');
+
+    if (!polideportivoVal) {
+        alert('Debes seleccionar un polideportivo');
         return;
     }
     
@@ -293,7 +302,11 @@ async function realizarReserva() {
         return;
     }
     
-    if (horaInicio >= horaFin) {
+    // Convertir horas a segundos
+    const inicioEnSegundos = horaASegundos(horaInicio);
+    const finEnSegundos = horaASegundos(horaFin);
+    
+    if (inicioEnSegundos >= finEnSegundos) {
         alert('La hora de inicio debe ser menor que la hora de fin');
         return;
     }
@@ -303,14 +316,89 @@ async function realizarReserva() {
     const dia = String(fechaSeleccionada.getDate()).padStart(2, '0');
     const fechaFormato = `${año}-${mes}-${dia}`;
     
-    // Guardar datos en localStorage para pagoConfirmacion.html
-    localStorage.setItem('fechaReserva', fechaFormato);
-    localStorage.setItem('horaInicio', horaInicio);
-    localStorage.setItem('horaFin', horaFin);
-    localStorage.setItem('motivo', motivo);
-    
-    // Redirigir a pagoConfirmacion
-    window.location.href = 'pagoConfirmacion.html';
+    // ===== VALIDACIONES DE HORARIO =====
+    try {
+        // Obtener datos del polideportivo
+        const polideportivosResponse = await fetch('/api/polideportivos');
+        if (!polideportivosResponse.ok) {
+            throw new Error('Error al obtener información del polideportivo');
+        }
+        const polideportivosData = await polideportivosResponse.json();
+        const polideportivo = polideportivosData.polideportivos.find(p => p.titulo === polideportivoVal);
+        
+        if (!polideportivo) {
+            alert('Polideportivo no encontrado');
+            return;
+        }
+        
+        // Obtener día de la semana (0=domingo, 1=lunes, etc)
+        const diaDelaSemana = fechaSeleccionada.getDay();
+        const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+        const nombreDia = diasSemana[diaDelaSemana];
+        
+        // VALIDACIÓN 3: Verificar que el día tenga horario válido (no sea null)
+        const horarioDia = polideportivo.horario[nombreDia];
+        if (horarioDia === null) {
+            alert(`El polideportivo no está disponible el ${nombreDia}`);
+            return;
+        }
+        
+        const aperturaDia = horarioDia.inicio;
+        const cierreDia = horarioDia.fin;
+        
+        // VALIDACIÓN 1: La hora de inicio NO debe ser menor a la apertura
+        if (inicioEnSegundos < aperturaDia) {
+            alert(`La hora de inicio no puede ser anterior a ${segundosAHora(aperturaDia)} (hora de apertura)`);
+            return;
+        }
+        
+        // VALIDACIÓN 2: La hora de fin NO debe ser mayor al cierre
+        if (finEnSegundos > cierreDia) {
+            alert(`La hora de fin no puede ser posterior a ${segundosAHora(cierreDia)} (hora de cierre)`);
+            return;
+        }
+        
+        // VALIDACIÓN 4: Verificar conflictos con reservas existentes
+        const reservasResponse = await fetch(`/api/modificarReserva/reservas?fecha=${fechaFormato}`);
+        if (!reservasResponse.ok) {
+            throw new Error('Error al obtener reservas');
+        }
+        const reservas = await reservasResponse.json();
+        
+        // Filtrar reservas del mismo polideportivo
+        const reservasPolideportivo = reservas.filter(r => r.polideportivo === polideportivoVal);
+        
+        // Verificar conflictos: la nueva reserva NO debe estar dentro del rango de una existente
+        // EXCEPCIÓN: Si la hora de inicio coincide con la hora final de una reserva existente, está permitido
+        for (let reserva of reservasPolideportivo) {
+            const inicioExistente = reserva.horaInicio;
+            const finExistente = reserva.horaFin;
+            
+            // Verificar solapamiento: inicioNuevo < finExistente && finNuevo > inicioExistente
+            // PERO permitir si inicioNuevo === finExistente
+            const solapamiento = inicioEnSegundos < finExistente && finEnSegundos > inicioExistente;
+            const esAdyacente = inicioEnSegundos === finExistente;
+            
+            if (solapamiento && !esAdyacente) {
+                alert(`Hay una reserva existente de ${segundosAHora(inicioExistente)} a ${segundosAHora(finExistente)}. Tu reserva se solapa con ésta.`);
+                return;
+            }
+        }
+        
+        // Si todas las validaciones pasaron, guardar datos en localStorage
+        localStorage.setItem('fechaReserva', fechaFormato);
+        localStorage.setItem('horaInicio', inicioEnSegundos);
+        localStorage.setItem('horaFin', finEnSegundos);
+        localStorage.setItem('motivo', motivo);
+        localStorage.setItem('polideportivo', polideportivoVal);
+
+        // Redirigir a pagoConfirmacion
+        window.location.href = 'pagoConfirmacion.html';
+        
+    } catch (error) {
+        console.error('Error en validación:', error);
+        alert('Error al validar la reserva: ' + error.message);
+    }
 }
 
 // Limpiar formulario
