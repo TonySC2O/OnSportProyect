@@ -84,6 +84,17 @@
       "horaInicio": 28800,
       "horaFin": 43200,
       "comprobante": "RES-3"
+    },
+    {
+      "persona": "tonyAdm",
+      "motivo": "reserva",
+      "costo": "7000",
+      "metodoPago": "Sinpe",
+      "polideportivo": "CODEA - Cancha de Fútbol",
+      "fechaReserva": "2026-02-02",
+      "horaInicio": 43200,
+      "horaFin": 46800,
+      "comprobante": "RES-4"
     }
   ],
   "solicitudesAdmin": [],
@@ -124,7 +135,7 @@
       "titulo": "BN Arena",
       "descripcion": "Este complejo deportivo multiusos que a albergado varios juegos centroamericanos y del caribe, cuenta con el espacio requerido para el fútbol, basquetbol, volleyball y atletismo.",
       "precio": 20000,
-      "estado": "No disponible",
+      "estado": "Disponible",
       "horario": {
         "Lunes": {
           "inicio": 28800,
@@ -285,7 +296,7 @@
       "titulo": "Estadio José Rafael 'Fello' Meza Ivancovich",
       "descripcion": "Complejo deportivo utilizado en el fútbol de primera división, sede del equipo C.S.Cartagines, cuenta con camerinos, iluminación y cuenta con las medidas internacionales FIFA para la práctica del fútbol.",
       "precio": 32000,
-      "estado": "No disponible",
+      "estado": "Disponible",
       "horario": {
         "Lunes": {
           "inicio": 21600,

@@ -15,7 +15,7 @@ const layout_main ={
     descripcion: "Este complejo deportivo multiusos que a albergado varios juegos centroamericanos y del caribe, cuenta con el espacio requerido para el fútbol, basquetbol, volleyball y atletismo.",
     horario: "Lunes a Viernes: 08:00 - 20:00",
     precio: "₡20,000 por hora",
-    estado: "No disponible"
+    estado: "Disponible"
 },
 3:{
     imagen: "Images/Cartago.jpg",
@@ -60,7 +60,7 @@ const layout_main ={
     descripcion: "Complejo deportivo utilizado en el fútbol de primera división, sede del equipo C.S.Cartagines, cuenta con camerinos, iluminación y cuenta con las medidas internacionales FIFA para la práctica del fútbol.",
     horario: "Lunes y Martes: 06:00 - 22:00  Domingo: 06:00 - 22:00",
     precio: "₡32,000 por hora",
-    estado: "No disponible"
+    estado: "Disponible"
 }
 
 };
